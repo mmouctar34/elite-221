@@ -1,5 +1,5 @@
 /* ═══════════════════════════════════════════════
-   XAM SA BOP — Programme Élite 221
+   SPLEAD — Programme Élite 221
    app.js
    ═══════════════════════════════════════════════ */
 
@@ -382,7 +382,7 @@ const curriculum = [
           <div class="content-block">
             <h3>🗺️ Votre Feuille de Route sur 90 Jours</h3>
             <ul class="steps-list">
-              <li><div class="step-num">J30</div><div><strong>Premier mois :</strong> Complétez cette formation. Identifiez 1 mentor. Rejoignez la communauté Xam Sa Bop.</div></li>
+              <li><div class="step-num">J30</div><div><strong>Premier mois :</strong> Complétez cette formation. Identifiez 1 mentor. Rejoignez la communauté SPLEAD.</div></li>
               <li><div class="step-num">J60</div><div><strong>Deuxième mois :</strong> Prenez la parole lors de 3 occasions différentes. Lisez 2 livres de développement.</div></li>
               <li><div class="step-num">J90</div><div><strong>Troisième mois :</strong> Organisez un événement dans votre réseau. Partagez ce que vous avez appris.</div></li>
             </ul>
