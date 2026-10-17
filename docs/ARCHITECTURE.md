@@ -1,6 +1,6 @@
 # SPLEAD : architecture technique
 
-Statut : **proposition, en attente de validation écrite du fondateur.**
+Statut : **validé par le fondateur le 17 octobre 2026.**
 Version : 1 (17 octobre 2026). À lire après [CADRAGE.md](CADRAGE.md).
 
 Ce document explique **avec quoi** l'application sera construite et **pourquoi**. Chaque choix est résumé en une phrase simple, puis détaillé pour le développeur.

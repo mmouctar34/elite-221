@@ -1,6 +1,6 @@
 # SPLEAD : feuille de route
 
-Statut : **proposition, en attente de validation écrite du fondateur.**
+Statut : **validé par le fondateur le 17 octobre 2026.** Jalon en cours : **J1 – Fondations**.
 Version : 1 (17 octobre 2026). À lire avec [CADRAGE.md](CADRAGE.md) et [ARCHITECTURE.md](ARCHITECTURE.md).
 
 Chaque jalon donne quelque chose qu'on peut **essayer sur un téléphone**. À la fin de chaque jalon : tests, analyse du code (linter), et un résumé en 5 lignes de ce qui marche et de ce qui reste.
@@ -16,6 +16,8 @@ Je n'indique pas de durée : elle dépend du temps disponible pour les relecture
 - **Ce que le fondateur fournit** : relecture, réponses aux questions ouvertes si possible.
 
 ## J1 – Fondations
+
+Plan détaillé : [J1_FONDATIONS.md](J1_FONDATIONS.md). Protocole de l'essai : [ESSAI_TRANSCRIPTION.md](ESSAI_TRANSCRIPTION.md).
 
 - **Livrables** :
   - Dépôt GitHub privé `mmouctar34/splead`, intégration continue (analyse, tests, construction Android).
@@ -115,3 +117,4 @@ Voir CADRAGE § 12 : modèle économique, budget de la bêta, langue parlée au 
 | Date | Ce qui a été fait |
 |---|---|
 | 17/10/2026 | Création du dépôt. Cadrage, architecture et feuille de route rédigés (version 1), en attente de validation. |
+| 17/10/2026 | Cadrage validé par le fondateur. J1 préparé : plan détaillé, protocole de l'essai de transcription, fiche de comptage. Bloqué en attente de : accord pour installer Flutter, Java et Android Studio, dépôt GitHub, organisation Supabase, mode de connexion, captures du design. |

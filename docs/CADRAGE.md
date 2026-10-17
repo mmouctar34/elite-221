@@ -1,6 +1,6 @@
 # SPLEAD : cadrage du produit
 
-Statut : **proposition, en attente de validation écrite du fondateur.**
+Statut : **validé par le fondateur le 17 octobre 2026.**
 Version : 1 (17 octobre 2026).
 
 Les champs `[À COMPLÉTER]` sont des informations que seul le fondateur peut donner. Je ne les ai pas devinées.

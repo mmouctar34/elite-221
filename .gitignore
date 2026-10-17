@@ -3,6 +3,11 @@
 .env.*
 !.env.example
 
+# Enregistrements vocaux de l'essai de transcription (donnees personnelles)
+essais/transcription/audio/
+essais/transcription/*.m4a
+essais/transcription/*.txt
+
 # Systeme
 .DS_Store
 Thumbs.db

@@ -25,7 +25,7 @@ Lis [docs/CADRAGE.md](docs/CADRAGE.md), [docs/ARCHITECTURE.md](docs/ARCHITECTURE
 - Un seul coach au lancement, mais la base prévoit plusieurs coachs.
 - Audio supprimé au bout de 90 jours ; analyses conservées tant que le compte existe.
 - Textes du prototype `elite-221` réutilisés après réécriture (tutoiement, sans emoji, corrections Mehrabian et posture de pouvoir).
-- Stack proposée (en attente de validation) : Flutter, Supabase, transcription choisie après essai, Claude pour l'analyse.
+- Cadrage, architecture et feuille de route **validés par le fondateur le 17 octobre 2026**. Stack : Flutter, Supabase, transcription choisie après essai, Claude pour l'analyse.
 
 ## Design « Souffle »
 
