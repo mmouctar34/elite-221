@@ -18,7 +18,7 @@ Version 1 (17 octobre 2026). Détaille le jalon J1 de la [feuille de route](FEUI
 | Supabase CLI | Gérer la base et les migrations | Absent : utilisable sans installation via `npx supabase` |
 | Docker | Faire tourner une copie locale de Supabase | Absent, **facultatif** : les tests de la base tourneront dans l'intégration continue GitHub |
 
-Installer Flutter, Java et Android Studio représente plusieurs gigaoctets de téléchargement. **Je le fais seulement avec votre accord.**
+Installer Flutter, Java et Android Studio représente plusieurs gigaoctets de téléchargement. **Je le fais seulement avec votre accord.** Le 18 octobre 2026, le fondateur a répondu « pas maintenant » : en attendant, je prépare ce qui ne demande aucun outil (consentement, contenu des leçons).
 
 ## 2. Ce que le fondateur doit fournir
 
@@ -66,11 +66,11 @@ La création d'une organisation se fait dans le tableau de bord Supabase : c'est
 | Compte Google | Gratuit | Presque tous les téléphones Android en ont un ; un seul geste |
 | Code reçu par SMS | Payant à chaque SMS, prix vers le Sénégal `[À COMPLÉTER]` | Le plus naturel au Sénégal, mais il faut un fournisseur de SMS |
 
-**Proposition : compte Google et code par e-mail en J1** (gratuits), puis le SMS quand le budget sera connu. La base est prévue pour ajouter le SMS sans rien casser.
+**Décision du fondateur (18 octobre 2026) : compte Google et code par e-mail en J1** (gratuits), puis le SMS quand le budget sera connu. La base est prévue pour ajouter le SMS sans rien casser.
 
 ## 6. Points de vigilance
 
 - **Application la plus légère possible** : la taille de l'APK est mesurée à chaque construction (objectif : moins de 15 Mo).
-- **Texte du consentement** : je rédige un brouillon simple, à faire relire par un juriste avant la bêta (J6).
+- **Texte du consentement** : brouillon dans [contenu/fr/consentement-v1.md](../contenu/fr/consentement-v1.md), à faire relire par un juriste avant la bêta (J6).
 - **Aucune donnée réelle dans `dev`** : seulement des comptes de test.
 - **Aucun emoji**, ni dans le code, ni dans les textes, ni dans les commits.

@@ -150,6 +150,8 @@ Indicateurs à suivre pendant la bêta fermée (les cibles sont à fixer par le 
 | 17/10/2026 | Un seul coach au lancement, mais la base prévoit plusieurs coachs, chacun avec ses apprenants |
 | 17/10/2026 | Enregistrements audio supprimés automatiquement au bout de 90 jours ; analyses écrites conservées tant que le compte existe |
 | 17/10/2026 | Textes de `elite-221` réutilisés après réécriture (tutoiement, sans emoji, corrections de fond) |
+| 17/10/2026 | Cadrage, architecture et feuille de route validés par le fondateur |
+| 18/10/2026 | Connexion : compte Google et code par e-mail ; SMS plus tard, selon le budget |
 
 ## 12. Questions encore ouvertes
 

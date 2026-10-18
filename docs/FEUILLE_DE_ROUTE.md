@@ -118,3 +118,4 @@ Voir CADRAGE § 12 : modèle économique, budget de la bêta, langue parlée au 
 |---|---|
 | 17/10/2026 | Création du dépôt. Cadrage, architecture et feuille de route rédigés (version 1), en attente de validation. |
 | 17/10/2026 | Cadrage validé par le fondateur. J1 préparé : plan détaillé, protocole de l'essai de transcription, fiche de comptage. Bloqué en attente de : accord pour installer Flutter, Java et Android Studio, dépôt GitHub, organisation Supabase, mode de connexion, captures du design. |
+| 18/10/2026 | Connexion décidée (Google + code e-mail). Installation des outils reportée par le fondateur. Brouillon du consentement (`contenu/fr/consentement-v1.md`) et module 1 réécrit en échantillon (`contenu/fr/module-1-prise-de-parole.md`), à relire. Organisation Supabase : réponse « autre chose », à préciser. |
