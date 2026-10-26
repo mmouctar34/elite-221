@@ -1,0 +1,84 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<title>SPLEAD Analyse</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@500;600;700;800&display=swap" rel="stylesheet">
+<style>
+body{margin:0}
+button{font-family:inherit}
+</style>
+</helmet>
+<div style="width: 390px; height: 844px; box-sizing: border-box; display: flex; flex-direction: column; background: #F3F1FF; color: #1E1B4B; font-family: 'Plus Jakarta Sans', system-ui, sans-serif; overflow: hidden">
+
+<header style="display: flex; align-items: center; gap: 8px; padding: 16px 16px 4px">
+<a href="Main.dc.html" aria-label="Retour à l'accueil" style="width: 44px; height: 44px; border-radius: 50%; background: #FFFFFF; color: #1E1B4B; display: flex; align-items: center; justify-content: center">
+<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 5l-7 7 7 7"/></svg>
+</a>
+<h1 style="margin: 0; font-size: 22px; font-weight: 800">Ton analyse</h1>
+</header>
+
+<main style="flex: 1; overflow: hidden; padding: 10px 20px 0; display: flex; flex-direction: column; gap: 14px">
+
+<section style="background: {{accent}}; color: #FFFFFF; border-radius: 26px; padding: 20px; display: flex; flex-direction: column; gap: 6px">
+<span style="font-size: 13px; font-weight: 800; letter-spacing: 0.06em; text-transform: uppercase; color: #A7F3E8">En résumé</span>
+<span style="font-size: 19px; line-height: 1.3; font-weight: 700">[Résumé de 2 phrases généré après la séance : idée principale, ton, impact.]</span>
+</section>
+
+<section style="background: #FFFFFF; border-radius: 22px; padding: 16px; display: flex; flex-direction: column; gap: 14px">
+<div style="display: flex; flex-direction: column; gap: 6px">
+<div style="display: flex; justify-content: space-between; font-size: 15px; font-weight: 700"><span>Structure</span><span style="color: #4B4A6B; font-weight: 600">[niveau]</span></div>
+<div style="height: 10px; border-radius: 5px; background: #E4E0FF"><div style="width: 70%; height: 10px; border-radius: 5px; background: {{accent}}"></div></div>
+</div>
+<div style="display: flex; flex-direction: column; gap: 6px">
+<div style="display: flex; justify-content: space-between; font-size: 15px; font-weight: 700"><span>Voix</span><span style="color: #4B4A6B; font-weight: 600">[niveau]</span></div>
+<div style="height: 10px; border-radius: 5px; background: #E4E0FF"><div style="width: 55%; height: 10px; border-radius: 5px; background: {{accent}}"></div></div>
+</div>
+<div style="display: flex; flex-direction: column; gap: 6px">
+<div style="display: flex; justify-content: space-between; font-size: 15px; font-weight: 700"><span>Impact</span><span style="color: #4B4A6B; font-weight: 600">[niveau]</span></div>
+<div style="height: 10px; border-radius: 5px; background: #E4E0FF"><div style="width: 80%; height: 10px; border-radius: 5px; background: {{accent}}"></div></div>
+</div>
+</section>
+
+<section style="background: #FFFFFF; border-radius: 22px; padding: 16px; display: flex; flex-direction: column; gap: 10px">
+<span style="font-size: 15px; font-weight: 700">Tes tics de langage</span>
+<div style="display: flex; flex-wrap: wrap; gap: 8px">
+<span style="height: 38px; padding: 0 14px; border-radius: 19px; background: #E4E0FF; display: flex; align-items: center; font-size: 14px; font-weight: 700">« euh » × [N]</span>
+<span style="height: 38px; padding: 0 14px; border-radius: 19px; background: #E4E0FF; display: flex; align-items: center; font-size: 14px; font-weight: 700">« donc » × [N]</span>
+<span style="height: 38px; padding: 0 14px; border-radius: 19px; background: #E4E0FF; display: flex; align-items: center; font-size: 14px; font-weight: 700">« du coup » × [N]</span>
+</div>
+</section>
+
+<section style="background: #FFFFFF; border-radius: 22px; padding: 16px; display: flex; flex-direction: column; gap: 10px">
+<div style="display: flex; gap: 12px; align-items: flex-start">
+<span style="width: 28px; height: 28px; border-radius: 50%; background: {{accent}}; color: #FFFFFF; display: flex; align-items: center; justify-content: center; flex: none"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg></span>
+<span style="font-size: 15px; line-height: 1.4"><strong>Point fort :</strong> [ce qui a bien marché]</span>
+</div>
+<div style="display: flex; gap: 12px; align-items: flex-start">
+<span style="width: 28px; height: 28px; border-radius: 50%; background: #2DD4BF; color: #1E1B4B; display: flex; align-items: center; justify-content: center; flex: none; font-weight: 800; font-size: 15px">!</span>
+<span style="font-size: 15px; line-height: 1.4"><strong>À travailler :</strong> [la priorité pour la prochaine séance]</span>
+</div>
+</section>
+</main>
+
+<footer style="display: flex; gap: 12px; padding: 10px 20px 28px; background: #F3F1FF">
+<a href="Seance.dc.html" style="flex: 1; height: 54px; border-radius: 27px; background: #FFFFFF; color: #1E1B4B; text-decoration: none; font-size: 16px; font-weight: 800; display: flex; align-items: center; justify-content: center">Réessayer</a>
+<a href="Progression.dc.html" style="flex: 1; height: 54px; border-radius: 27px; background: #2DD4BF; color: #1E1B4B; text-decoration: none; font-size: 16px; font-weight: 800; display: flex; align-items: center; justify-content: center">Enregistrer</a>
+</footer>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"accent":{"editor":"color","default":"#4F46E5","options":["#4F46E5","#0F766E","#1D4ED8"]},"$preview":{"width":390,"height":844}}'>
+class Component extends DCLogic {
+renderVals() {
+return { accent: this.props.accent ?? '#4F46E5' };
+}
+}
+</script>
+</body>
+</html>
