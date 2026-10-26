@@ -20,6 +20,8 @@ La préversion sur GitHub Pages ne convenait pas au fondateur, qui veut un hébe
 
 **Vercel**, choisi par le fondateur le 26 octobre 2026 : un projet `splead` séparé, dans l'équipe Vercel existante, relié au dépôt GitHub `mmouctar34/elite-221`. Chaque envoi sur `main` met à jour la production ; chaque branche reçoit sa propre adresse de préversion (US-006). La configuration est dans `vercel.json`.
 
+**En ligne depuis le 26/10/2026** : https://splead-two.vercel.app (adresse publique de production). Les adresses en `…-madior-insight.vercel.app` sont protégées par Vercel : seuls les membres de l'équipe Vercel peuvent les ouvrir.
+
 ## 4. Points d'attention
 
 - **Liaison GitHub** : le compte Vercel doit d'abord être connecté au compte GitHub du fondateur (réglage du compte Vercel). Sans cela, Vercel refuse de lier le dépôt.
