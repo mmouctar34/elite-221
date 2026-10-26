@@ -32,6 +32,12 @@ Lis [docs/CADRAGE.md](docs/CADRAGE.md), [docs/ARCHITECTURE.md](docs/ARCHITECTURE
 
 **Référence obligatoire** : la maquette validée « SPLEAD Design », copiée dans [design/maquettes-souffle/](design/LISEZMOI.md). Tout écran nouveau ou modifié doit la suivre ; s'il n'a pas de maquette, demander au fondateur avant de l'inventer.
 
+**SPLEAD est une application web, pas une application de téléphone affichée en petit** (décision du fondateur, 26/10/2026) :
+- `/` : page d'accueil publique (vitrine) : présentation, programme, tarifs, à propos, installation, questions ;
+- `/app/…` : l'application. Sur ordinateur, menu latéral et contenu sur toute la largeur ; sur téléphone, la mise en page des maquettes (qui sont la **version téléphone**) avec la barre du bas ;
+- PWA installable : l'icône installée ouvre directement `/app`.
+Toujours vérifier un écran à la fois sur ordinateur (1440 px) et sur téléphone (390 px).
+
 - Aéré, très arrondi, calme : cartes blanches sur fond lavande, grand bouton micro rond au centre de la séance.
 - Couleurs :
   - Nuit `#1E1B4B` (texte, fonds sombres) ;

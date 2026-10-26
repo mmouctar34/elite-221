@@ -155,6 +155,7 @@ Indicateurs à suivre pendant la bêta fermée (les cibles sont à fixer par le 
 | 17/10/2026 | Cadrage, architecture et feuille de route validés par le fondateur |
 | 18/10/2026 | Connexion : compte Google et code par e-mail ; SMS plus tard, selon le budget |
 | 26/10/2026 | Dépôt GitHub : `mmouctar34/elite-221` (public) au lieu d'un nouveau dépôt privé ; SPLEAD remplace le prototype, archivé avec son historique |
+| 26/10/2026 | **Application web responsive** : page d'accueil publique (`/`) et application (`/app`) avec menu latéral sur ordinateur et mise en page téléphone sur mobile ; PWA installable qui ouvre `/app` |
 | 26/10/2026 | **Design de référence** : la maquette « SPLEAD Design » validée dans Claude (11 écrans, copiés dans `design/maquettes-souffle/`) ; les écrans de l'application la reproduisent fidèlement |
 | 26/10/2026 | **Hébergement : Vercel** (projet séparé), à la place de GitHub Pages ; Netlify écarté pour l'instant faute d'accès ([ADR-002](adr/ADR-002-hebergement-vercel.md)) |
 | 26/10/2026 | **Freemium (provisoire)** : gratuit = module 1 complet, 3 séances analysées par semaine, Arène en spectateur ; abonnement = les 3 modules, une séance analysée par jour, l'Arène et le classement, Mon coach (meets, retours), le certificat. Prix `[À COMPLÉTER]` |
