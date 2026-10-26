@@ -60,7 +60,7 @@ Points à savoir :
 
 ### Inclus dans le MVP
 
-1. **Comptes et inscription** : numéro de téléphone ou adresse e-mail, prénom, objectif principal, et consentement explicite à l'enregistrement de la voix.
+1. **Comptes et inscription** : compte Google ou code reçu par e-mail (le SMS viendra plus tard), prénom, objectif principal, et consentement explicite à l'enregistrement de la voix.
 2. **Accueil** : salutation, série de jours, séance du jour, leçon en cours, prochain rendez-vous avec le coach.
 3. **Modules et leçons** : les 3 modules (Prise de Parole en Public, Leadership Moderne, Développement Personnel), chacun avec un texte court, un principe clé et un cas pratique à voix haute. Les modules se débloquent dans l'ordre et chacun se valide par un cas pratique final. Les leçons sont téléchargeables pour le hors-ligne.
 4. **Séance** : sujet, enregistrement de 60 secondes avec chrono, onde sonore, pause et fin. L'envoi se met en file d'attente sans réseau, puis reprend tout seul.
@@ -101,6 +101,8 @@ Les pistes possibles, à trancher avant le jalon J8 :
 - C. Demander l'avis de Google, ou d'un spécialiste, sur le cas précis des rendez-vous avec le coach.
 
 L'architecture garde les trois portes ouvertes.
+
+**Mise à jour du 26 octobre 2026 :** SPLEAD est désormais une PWA ([ADR-001](adr/ADR-001-pwa.md)). La vente se fait directement sur la PWA, par Wave ou Orange Money, hors des stores et sans commission. La règle de Google Play ne concernera que la version Google Play éventuelle. Les scénarios de prix sont dans [ANALYSE_FINANCIERE.md](ANALYSE_FINANCIERE.md).
 
 ## 8. Le contenu pédagogique
 
@@ -152,6 +154,7 @@ Indicateurs à suivre pendant la bêta fermée (les cibles sont à fixer par le 
 | 17/10/2026 | Textes de `elite-221` réutilisés après réécriture (tutoiement, sans emoji, corrections de fond) |
 | 17/10/2026 | Cadrage, architecture et feuille de route validés par le fondateur |
 | 18/10/2026 | Connexion : compte Google et code par e-mail ; SMS plus tard, selon le budget |
+| 26/10/2026 | **PWA d'abord** au lieu de Flutter ; pas d'App Store au début ; Google Play facultatif via TWA ([ADR-001](adr/ADR-001-pwa.md)) |
 
 ## 12. Questions encore ouvertes
 

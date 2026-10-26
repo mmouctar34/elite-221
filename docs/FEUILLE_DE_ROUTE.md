@@ -20,7 +20,7 @@ Je n'indique pas de durée : elle dépend du temps disponible pour les relecture
 Plan détaillé : [J1_FONDATIONS.md](J1_FONDATIONS.md). Protocole de l'essai : [ESSAI_TRANSCRIPTION.md](ESSAI_TRANSCRIPTION.md).
 
 - **Livrables** :
-  - Dépôt GitHub privé `mmouctar34/splead`, intégration continue (analyse, tests, construction Android).
+  - Dépôt GitHub privé `mmouctar34/splead`, intégration continue (analyse, tests, construction de la PWA).
   - Projets Supabase `splead-dev` et `splead-prod`, avec les premières tables, leurs règles d'accès et les tests de sécurité.
   - **Système de design** : couleurs, police, espacements, arrondis, boutons, cartes, pastilles, champ de saisie, gros bouton micro, barre de navigation du bas, écran de chargement, écran d'erreur. Le tout est visible sur une page de démonstration interne.
   - Navigation du bas : Accueil, S'entraîner, Progrès, Profil (écrans vides pour l'instant).
@@ -70,11 +70,12 @@ Plan détaillé : [J1_FONDATIONS.md](J1_FONDATIONS.md). Protocole de l'essai : [
 
 **Fin du MVP.**
 
-## J6 – Bêta fermée sur Google Play
+## J6 – Bêta fermée
 
 - **Livrables** :
-  - Compte développeur Google Play, fiche de l'application, politique de confidentialité et conditions d'utilisation en français.
-  - Test interne (équipe), puis test fermé (`[À COMPLÉTER]` apprenants volontaires). Google Play peut exiger un nombre minimum de testeurs et une durée minimale de test fermé pour les nouveaux comptes : à vérifier au moment de créer le compte.
+  - La PWA en préproduction, sur un lien réservé aux bêta-testeurs ; politique de confidentialité et conditions d'utilisation en français.
+  - Test interne (équipe), puis test fermé (`[À COMPLÉTER]` apprenants volontaires, recrutés pendant les entretiens de [PROSPECTION.md](PROSPECTION.md)).
+  - Facultatif : publication sur Google Play via TWA (25 $). Google Play peut exiger un nombre minimum de testeurs et une durée minimale de test fermé pour les nouveaux comptes : à vérifier au moment de créer le compte.
   - Suivi des plantages et des coûts réels ; quota réglé selon le budget.
   - Démarches auprès de la CDP faites avant d'accueillir de vrais apprenants.
 - **Terminé quand** : les indicateurs du CADRAGE § 9 sont mesurés sur au moins 2 semaines, avec 99 % de sessions sans plantage.
@@ -99,7 +100,7 @@ Plan détaillé : [J1_FONDATIONS.md](J1_FONDATIONS.md). Protocole de l'essai : [
 | Statut juridique de l'entreprise | Fondateur | `[À COMPLÉTER]` |
 | Nom et marque (dépôt à l'OAPI) | Fondateur | `[À COMPLÉTER]` ; nom retenu : SPLEAD |
 | NINEA et RCCM (nécessaires aux comptes marchands) | Fondateur | `[À COMPLÉTER]` |
-| Compte développeur Google Play | Fondateur | À faire avant J6 |
+| Compte développeur Google Play (facultatif depuis l'ADR-001) | Fondateur | Si l'on publie sur Google Play |
 | Politique de confidentialité et conditions d'utilisation en français | Fondateur + juriste (brouillon préparé par Claude) | À faire avant J6 |
 | Démarches auprès de la CDP (déclaration, transfert hors du Sénégal) | Fondateur + juriste | À faire avant J6 |
 | Compte marchand Wave et/ou Orange Money, ou agrégateur | Fondateur | À faire avant J8 |
@@ -120,3 +121,4 @@ Voir CADRAGE § 12 : modèle économique, budget de la bêta, langue parlée au 
 | 17/10/2026 | Cadrage validé par le fondateur. J1 préparé : plan détaillé, protocole de l'essai de transcription, fiche de comptage. Bloqué en attente de : accord pour installer Flutter, Java et Android Studio, dépôt GitHub, organisation Supabase, mode de connexion, captures du design. |
 | 18/10/2026 | Connexion décidée (Google + code e-mail). Installation des outils reportée par le fondateur. Brouillon du consentement (`contenu/fr/consentement-v1.md`) et module 1 réécrit en échantillon (`contenu/fr/module-1-prise-de-parole.md`), à relire. Organisation Supabase : réponse « autre chose », à préciser. |
 | 19/10/2026 | Le fondateur s'inquiète du coût de Supabase. Comparaison faite (Firebase, Appwrite, serveur loué) ; proposition : Supabase gratuit jusqu'à J6, dans une organisation SPLEAD séparée (gratuite). Réponse attendue. En attente aussi : avis sur le ton du module 1, accord pour installer les outils. |
+| 26/10/2026 | **Passage à la PWA** (ADR-001) : plus besoin de Flutter, ni de compte Apple. Mise en place du processus et de l'équipe d'agents (4 agents SPLEAD, 3 commandes `/sprint`, `/recette`, `/rapport`). Prospection (marché, cibles, concurrence, 10 hypothèses, guide d'entretien), analyse financière, cahier des charges, backlog (41 user stories, 8 sprints proposés). Architecture et plan J1 mis à jour. |

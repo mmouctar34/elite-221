@@ -25,7 +25,8 @@ Lis [docs/CADRAGE.md](docs/CADRAGE.md), [docs/ARCHITECTURE.md](docs/ARCHITECTURE
 - Un seul coach au lancement, mais la base prévoit plusieurs coachs.
 - Audio supprimé au bout de 90 jours ; analyses conservées tant que le compte existe.
 - Textes du prototype `elite-221` réutilisés après réécriture (tutoiement, sans emoji, corrections Mehrabian et posture de pouvoir).
-- Cadrage, architecture et feuille de route **validés par le fondateur le 17 octobre 2026**. Stack : Flutter, Supabase, transcription choisie après essai, Claude pour l'analyse.
+- Cadrage, architecture et feuille de route **validés par le fondateur le 17 octobre 2026**. Stack depuis le 26 octobre 2026 : **PWA** (React, TypeScript, Vite) sur Cloudflare Pages, Supabase, transcription choisie après essai, Claude pour l'analyse ([ADR-001](docs/adr/ADR-001-pwa.md)).
+- Processus, équipe d'agents et commandes `/sprint`, `/recette`, `/rapport` : [docs/PROCESSUS.md](docs/PROCESSUS.md). Backlog : [docs/BACKLOG.md](docs/BACKLOG.md).
 
 ## Design « Souffle »
 
@@ -49,5 +50,5 @@ Lis [docs/CADRAGE.md](docs/CADRAGE.md), [docs/ARCHITECTURE.md](docs/ARCHITECTURE
 - Fonctionne bien avec 2 Go de RAM.
 - Leçons lisibles hors-ligne, envoi reprenable, audio compressé, application la plus petite possible.
 - Bouton Éco-data.
-- Prix en FCFA ; paiement par Wave ou Orange Money, sous réserve de la règle Google Play (CADRAGE § 7).
+- Prix en FCFA ; paiement par Wave ou Orange Money directement sur la PWA (règle Google Play seulement pour une éventuelle version Google Play).
 - Loi n° 2008-12 et CDP : consentement explicite, stockage privé, suppression sur demande.

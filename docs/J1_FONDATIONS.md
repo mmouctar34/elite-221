@@ -1,30 +1,25 @@
 # Jalon J1 : Fondations (plan détaillé)
 
-Version 1 (17 octobre 2026). Détaille le jalon J1 de la [feuille de route](FEUILLE_DE_ROUTE.md).
+Version 2 (26 octobre 2026) : mise à jour pour la PWA ([ADR-001](adr/ADR-001-pwa.md)). Détaille le jalon J1 de la [feuille de route](FEUILLE_DE_ROUTE.md). Le découpage en user stories et en sprints est dans le [backlog](BACKLOG.md).
 
-**But du jalon :** à la fin, on installe SPLEAD sur un petit téléphone Android, on crée un compte, on accepte l'enregistrement de la voix, on navigue entre les 4 onglets, on se déconnecte, on se reconnecte et on supprime son compte. En parallèle, l'essai de transcription a désigné un outil.
+**But du jalon :** à la fin, on installe SPLEAD (PWA) sur un petit téléphone Android, on crée un compte, on accepte l'enregistrement de la voix, on navigue entre les 4 onglets, on se déconnecte, on se reconnecte et on supprime son compte. En parallèle, l'essai de transcription a désigné un outil.
 
 ---
 
-## 1. Ce qui manque sur le PC (constaté le 17 octobre 2026)
+## 1. Les outils sur le PC (mis à jour le 26 octobre 2026)
 
 | Outil | Rôle | État |
 |---|---|---|
-| Git | Historique du code | Installé |
-| Node.js 24 | Outils Supabase et scripts d'essai | Installé |
-| Flutter (avec Dart) | Construire l'application | **Absent** |
-| Java (JDK 17) | Nécessaire pour construire une application Android | **Absent** |
-| Android SDK (via Android Studio) | Outils Android, émulateur | **Absent** |
-| Supabase CLI | Gérer la base et les migrations | Absent : utilisable sans installation via `npx supabase` |
-| Docker | Faire tourner une copie locale de Supabase | Absent, **facultatif** : les tests de la base tourneront dans l'intégration continue GitHub |
-
-Installer Flutter, Java et Android Studio représente plusieurs gigaoctets de téléchargement. **Je le fais seulement avec votre accord.** Le 18 octobre 2026, le fondateur a répondu « pas maintenant » : en attendant, je prépare ce qui ne demande aucun outil (consentement, contenu des leçons).
+| Git (et Git Bash) | Historique du code | Installé |
+| Node.js 24 et npm | Construire et tester la PWA, outils Supabase | Installé |
+| Supabase CLI | Gérer la base et les migrations | Utilisable sans installation via `npx supabase` |
+| Docker | Copie locale de Supabase | **Facultatif** : les tests de la base tourneront dans l'intégration continue GitHub |
+| Flutter, Java, Android Studio | — | **Plus nécessaires** depuis le choix de la PWA |
 
 ## 2. Ce que le fondateur doit fournir
 
 | Élément | Pourquoi | Bloque |
 |---|---|---|
-| Accord pour installer Flutter, Java et Android Studio sur ce PC | Sans eux, impossible de construire l'application | Tout le code de J1 |
 | Dépôt GitHub privé vide `mmouctar34/splead` (sur github.com > New repository, sans README) | Sauvegarde du code et intégration continue | L'intégration continue |
 | Choix de l'organisation Supabase (voir § 4) | Séparer les factures et les accès de Madior Insight | La base de données |
 | Captures du design dans `design/` | Reproduire fidèlement le style « Souffle » | Le système de design |
@@ -38,8 +33,8 @@ Chaque étape a sa branche et se termine par des tests verts.
 
 | # | Branche | Contenu | Terminé quand |
 |---|---|---|---|
-| 1 | `j1/socle` | Projet Flutter, analyse stricte, structure des dossiers, traductions (`fr`), `.env.example`, fichier de configuration par environnement (`dev`, `prod`) | `flutter analyze` sans avertissement, un test vide passe, l'application s'ouvre sur l'émulateur |
-| 2 | `j1/integration-continue` | GitHub Actions : analyse, tests, construction de l'APK, tests de la base | Un envoi déclenche les vérifications, qui passent |
+| 1 | `j1/socle` | Projet PWA (Vite, React, TypeScript strict), manifeste et service worker, structure des dossiers, traductions (`fr`), `.env.example`, configuration par environnement (`dev`, `prod`) | Analyse et tests sans erreur ; la construction passe ; l'application s'installe et s'ouvre hors-ligne dans Chrome |
+| 2 | `j1/integration-continue` | GitHub Actions : analyse, tests, construction, mesure de la taille du code, tests de la base | Un envoi déclenche les vérifications, qui passent |
 | 3 | `j1/systeme-design` | Couleurs, police Plus Jakarta Sans (500 à 800, incluse), espacements, arrondis, icônes Lucide (trait de 2,2), composants : bouton principal, bouton secondaire, bouton-icône avec libellé, carte, pastille, champ de saisie, gros bouton micro, barre du bas, écran de chargement, écran d'erreur | Page de démonstration interne ; captures de référence automatiques ; zones tactiles de 44 px minimum vérifiées par test ; contrastes vérifiés |
 | 4 | `j1/navigation` | Les 4 onglets (Accueil, S'entraîner, Progrès, Profil), écrans vides mais propres | On passe d'un onglet à l'autre ; le bouton retour d'Android se comporte normalement |
 | 5 | `j1/base-comptes` | Projets Supabase `splead-dev` et `splead-prod` ; premières tables : `profiles`, `user_roles`, `consents`, `coach_assignments`, avec leurs règles d'accès ; création automatique du profil à l'inscription ; tests de sécurité | Les tests prouvent qu'un apprenant ne lit ni ne modifie le profil d'un autre et ne peut pas changer son propre rôle |
@@ -70,7 +65,7 @@ La création d'une organisation se fait dans le tableau de bord Supabase : c'est
 
 ## 6. Points de vigilance
 
-- **Application la plus légère possible** : la taille de l'APK est mesurée à chaque construction (objectif : moins de 15 Mo).
+- **Application la plus légère possible** : la taille du code chargé à la première ouverture est mesurée à chaque construction (objectif : 200 Ko compressés au maximum).
 - **Texte du consentement** : brouillon dans [contenu/fr/consentement-v1.md](../contenu/fr/consentement-v1.md), à faire relire par un juriste avant la bêta (J6).
 - **Aucune donnée réelle dans `dev`** : seulement des comptes de test.
 - **Aucun emoji**, ni dans le code, ni dans les textes, ni dans les commits.

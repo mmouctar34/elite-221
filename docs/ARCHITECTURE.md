@@ -1,7 +1,7 @@
 # SPLEAD : architecture technique
 
-Statut : **validé par le fondateur le 17 octobre 2026.**
-Version : 1 (17 octobre 2026). À lire après [CADRAGE.md](CADRAGE.md).
+Statut : **validé par le fondateur le 17 octobre 2026 ; passage à la PWA validé le 26 octobre 2026** ([ADR-001](adr/ADR-001-pwa.md)).
+Version : 2 (26 octobre 2026). À lire après [CADRAGE.md](CADRAGE.md).
 
 Ce document explique **avec quoi** l'application sera construite et **pourquoi**. Chaque choix est résumé en une phrase simple, puis détaillé pour le développeur.
 
@@ -12,8 +12,8 @@ Les prix indiqués datent du 17 octobre 2026. Ceux marqués « à vérifier » v
 ## 1. Vue d'ensemble
 
 ```
- Téléphone Android (application Flutter)
- ├─ Leçons enregistrées sur le téléphone (lecture hors-ligne)
+ Téléphone Android ou iPhone, ou ordinateur (PWA installée, hébergée sur Cloudflare Pages)
+ ├─ Leçons enregistrées sur le téléphone (lecture hors-ligne, service worker et IndexedDB)
  ├─ Enregistrement de la voix (fichier compressé, environ 250 Ko par minute)
  └─ File d'attente : envoi dès que le réseau revient, reprise si coupure
           │
@@ -28,50 +28,38 @@ Les prix indiqués datent du 17 octobre 2026. Ceux marqués « à vérifier » v
       ├─ paiement-webhook (v1.1)
       └─ verifier-certificat (v1.1, page publique)
           │
-          ├──▶ Service de transcription (voix vers texte) : choisi après essai, voir § 5
-          ├──▶ Claude (Anthropic) : analyse du texte, voir § 6
-          ├──▶ Firebase Cloud Messaging : notifications (v1.1)
-          ├──▶ Resend : e-mails (confirmation, reçus)
-          └──▶ Sentry : suivi des plantages
+          ├──> Service de transcription (voix vers texte) : choisi après essai, voir § 5
+          ├──> Claude (Anthropic) : analyse du texte, voir § 6
+          ├──> Web Push (standard des navigateurs) : notifications (v1.1)
+          ├──> Resend : e-mails (confirmation, reçus)
+          └──> Sentry : suivi des plantages
 ```
 
 **La règle d'or :** le téléphone ne parle jamais directement à l'IA ni au paiement. Il passe toujours par une fonction serveur. Ainsi, aucune clé secrète n'est dans l'application, et personne ne peut tricher en modifiant son téléphone.
 
-## 2. L'application : Flutter, React Native ou natif ?
+## 2. L'application : une PWA
 
-| Critère | Flutter | React Native (Expo) | Natif (Kotlin) |
-|---|---|---|---|
-| Une seule base de code pour Android puis iPhone | Oui | Oui | Non (tout réécrire pour iPhone) |
-| Fluidité sur un téléphone de 2 Go de RAM | Très bonne : rendu direct, sans pont JavaScript | Bonne avec la nouvelle architecture, mais plus sensible aux longues listes et aux animations | La meilleure |
-| Fidélité au design (arrondis, couleurs, polices) | Identique sur tous les téléphones : Flutter dessine lui-même chaque pixel | Dépend parfois des composants Android | Bonne, mais tout est à faire deux fois |
-| Taille de l'application | Petite, environ 10 Mo en paquet par processeur (à mesurer) | Comparable | La plus petite |
-| Corriger un bug sans repasser par Google Play | Payant (service Shorebird) | Gratuit (EAS Update) | Non |
-| Compétences de l'équipe actuelle (TypeScript, React) | À apprendre (langage Dart) | Déjà connues | À apprendre |
+**Décision du 26 octobre 2026 : SPLEAD est d'abord une PWA** (application web installable). La comparaison avec Flutter, les raisons et les risques sont dans [l'ADR-001](adr/ADR-001-pwa.md). En résumé : 0 FCFA de store au départ, un seul code pour Android, iPhone et ordinateur, des compétences déjà connues de l'équipe (TypeScript, React), et aucun outil à installer.
 
-**Recommandation : Flutter.** Je confirme votre avis de départ, pour trois raisons :
+**Bibliothèques prévues** (à confirmer au sprint 1, en vérifiant leur taille et qu'elles sont entretenues) :
 
-1. La cible, ce sont les petits téléphones Android. C'est là que Flutter est le plus régulier.
-2. Le design « Souffle » est très arrondi et doit être reproduit fidèlement. Flutter garantit le même rendu partout.
-3. Le passage à l'iPhone se fera plus tard sans tout réécrire.
-
-**Ce qu'on accepte en échange** (contre-arguments honnêtes) :
-
-- L'équipe Madior connaît TypeScript et React, pas Dart. Si un autre développeur doit reprendre le code, React Native serait plus familier. C'est le seul vrai argument contre Flutter. Je le juge moins important que la fluidité sur les petits téléphones.
-- Pas de correction gratuite « à distance » : les corrections passent par Google Play, qui demande en général quelques heures à quelques jours. Comme le contenu pédagogique vient de la base de données, on aura rarement besoin de republier pour modifier une leçon.
-
-**Bibliothèques prévues** (à confirmer au jalon J1, en vérifiant qu'elles sont entretenues) :
-
-| Besoin | Bibliothèque |
+| Besoin | Outil |
 |---|---|
-| Navigation | `go_router` |
-| État de l'application | `flutter_riverpod` |
-| Base locale (leçons hors-ligne, file d'envoi) | `drift` (SQLite) |
-| Enregistrement audio (Opus ou AAC) | `record` |
-| Connexion au serveur | `supabase_flutter` |
-| Traductions (français, wolof plus tard) | `flutter_localizations` + fichiers `.arb` |
-| Icônes | Paquet Lucide pour Flutter, trait de 2,2 |
-| Suivi des plantages | `sentry_flutter` |
-| Police | Plus Jakarta Sans **incluse dans l'application** (graisses 500 à 800 seulement), jamais téléchargée au lancement |
+| Langage et construction | TypeScript strict, React, Vite |
+| Installation et hors-ligne | `vite-plugin-pwa` (Workbox) : manifeste et service worker |
+| Navigation | React Router |
+| Données du serveur, cache | `@supabase/supabase-js`, TanStack Query |
+| Base locale (leçons hors-ligne, file d'envoi) | IndexedDB, via Dexie |
+| Enregistrement audio | API MediaRecorder du navigateur (Opus/WebM sur Chrome, AAC/MP4 sur Safari : le serveur accepte les deux) |
+| Envoi reprenable | `tus-js-client` (protocole TUS, accepté par Supabase Storage) |
+| Traductions | Fichiers JSON par langue et une petite fonction de traduction (une bibliothèque seulement si la taille le permet) |
+| Icônes | `lucide-react`, trait de 2,2, en n'important que les icônes utilisées |
+| Police | Plus Jakarta Sans **hébergée avec l'application** (graisses 500 à 800, caractères latins seulement), jamais chargée depuis Google au lancement |
+| Tests | Vitest et Testing Library (unitaires), Playwright (de bout en bout), axe (accessibilité) |
+| Suivi des erreurs | Sentry pour navigateur, chargé après l'affichage |
+| Hébergement | Cloudflare Pages : une préversion par branche, la production seulement sur accord |
+
+**Budget de légèreté :** 200 Ko compressés au maximum pour le code chargé à la première ouverture, vérifié par l'intégration continue. Les écrans du coach et les écrans rarement utilisés sont chargés seulement quand on les ouvre.
 
 ## 3. Le serveur : Supabase
 
@@ -155,7 +143,7 @@ Toutes les tables ont des règles d'accès par ligne (§ 8). Les noms techniques
 | `daily_quotas` | utilisateur, jour, séances utilisées | soi-même (lecture) ; modifiable par le serveur |
 | `streaks` | série actuelle, meilleure série, dernier jour actif | soi-même ; ses coachs |
 | `coach_notes` | retour ou objectif, auteur, apprenant, date | l'apprenant concerné ; ses coachs |
-| `messages` | message écrit apprenant ↔ coach (texte seulement) | les deux personnes concernées |
+| `messages` | message écrit entre apprenant et coach (texte seulement) | les deux personnes concernées |
 | `meetings` | apprenant, coach, date et heure, lien Google Meet, statut | les deux personnes concernées |
 | `push_tokens` (v1.1) | identifiant de notification du téléphone | soi-même |
 | `badges`, `user_badges` (v1.1) | badges gagnés | soi-même ; ses coachs |
@@ -184,7 +172,7 @@ Les règles, et ce qu'elles empêchent concrètement :
 ## 9. Certificat vérifiable (v1.1)
 
 - Un code unique de 10 caractères, sans lettres ambiguës (pas de O/0 ni de I/1), par exemple `SPL-7K4M-Q9XA`.
-- Une **page publique de vérification** : on saisit le code et elle affiche le prénom, l'initiale du nom, le parcours validé et la date. Rien d'autre. C'est la seule page web publique du projet, sur un nom de domaine `[À COMPLÉTER]`.
+- Une **page publique de vérification** : on saisit le code et elle affiche le prénom, l'initiale du nom, le parcours validé et la date. Rien d'autre. Elle fait partie de la PWA, à une adresse publique du type `/verifier`, sur un nom de domaine `[À COMPLÉTER]`.
 - Le certificat est délivré après le quiz final. Il est éventuellement payant, selon le modèle économique (voir CADRAGE § 7).
 
 ## 10. Données personnelles et loi sénégalaise
@@ -198,7 +186,7 @@ Ce que cela implique pour SPLEAD :
 3. **Conservation** : audio supprimé automatiquement au bout de 90 jours ; analyses écrites conservées tant que le compte existe ; tout est supprimé à la fermeture du compte.
 4. **Suppression sur demande**, depuis l'application, en un geste, avec confirmation. Un export des données est aussi possible.
 5. **Minimisation** : l'IA ne reçoit que le texte transcrit, sans nom ni numéro. On choisira des prestataires qui n'utilisent pas les données pour entraîner leurs modèles (à vérifier dans leurs conditions au moment du choix).
-6. **Liste des sous-traitants** publiée dans la politique de confidentialité : Supabase, le service de transcription choisi, Anthropic, Google (Firebase), Resend, Sentry, le prestataire de paiement.
+6. **Liste des sous-traitants** publiée dans la politique de confidentialité : Supabase, Cloudflare (hébergement), le service de transcription choisi, Anthropic, Resend, Sentry, le prestataire de paiement.
 
 ## 11. Hors-ligne et économie de données
 
@@ -206,11 +194,12 @@ Ce que cela implique pour SPLEAD :
 - **Séances** : enregistrables sans réseau ; elles partent toutes seules plus tard.
 - **Éco-data** (bouton visible dans l'en-tête) : pas de téléchargement automatique, envoi des audios en Wi-Fi uniquement (sauf « Envoyer maintenant »), images en qualité réduite, pas d'audio d'exemple en lecture automatique.
 - **Synchronisation** : pour le contenu des leçons, c'est la version du serveur qui fait foi. Les séances et la progression sont ajoutées par le téléphone et jamais écrasées.
-- **Taille de l'application** : objectif sous 15 Mo, vérifié à chaque jalon. Paquet par type de processeur, aucune grosse image, police limitée aux graisses utilisées.
+- **Taille de l'application** : 200 Ko compressés au maximum à la première ouverture, vérifié à chaque construction ; aucune grosse image ; police limitée aux graisses utilisées.
+- **Stockage sur le téléphone** : l'application demande au navigateur un stockage persistant, pour que les leçons et les séances en attente ne soient pas effacées (important sur iPhone, voir l'ADR-001).
 
 ## 12. Notifications et rendez-vous
 
-- **Rappels de série et de rendez-vous** (v1.1) : envoyés par le serveur via Firebase Cloud Messaging. Rappel de rendez-vous la veille et une heure avant. L'heure du rappel de série est choisie par l'apprenant.
+- **Rappels de série et de rendez-vous** (v1.1) : envoyés par le serveur avec Web Push, le standard des navigateurs (gratuit, sans Firebase). Sur iPhone, cela demande iOS 16.4 ou plus récent et une PWA installée. Rappel de rendez-vous la veille et une heure avant. L'heure du rappel de série est choisie par l'apprenant.
 - **Rendez-vous** : le coach crée l'événement Google Meet lui-même, puis colle le lien et la date dans l'Espace coach. Le bouton « Rejoindre » ouvre Google Meet. Pas de visio dans l'application.
 
 ## 13. Paiement mobile (v1.1, après la décision du CADRAGE § 7)
@@ -227,7 +216,7 @@ Les chiffres viennent de comparatifs en ligne d'un même blog commercial, pas de
 
 ## 14. Qualité et outils de travail
 
-- **Dart en mode strict** (analyse statique stricte, aucun avertissement accepté) ; TypeScript strict pour les fonctions serveur.
+- **TypeScript en mode strict** partout (application et fonctions serveur), avec ESLint : aucun avertissement accepté.
 - **Tests** :
   - tests unitaires (calcul des tics, du débit, de la série) ;
   - tests d'écrans (widgets) et captures de référence pour le système de design ;
@@ -244,10 +233,12 @@ Les chiffres viennent de comparatifs en ligne d'un même blog commercial, pas de
 
 | Poste | Coût |
 |---|---|
-| Compte développeur Google Play | 25 $, une seule fois |
+| Compte développeur Google Play | 25 $, une seule fois, **facultatif** : seulement pour publier la PWA sur Google Play (TWA) |
 | Supabase `prod` (formule Pro) | environ 25 $ par mois |
 | Supabase `dev` | gratuit |
-| Firebase Cloud Messaging | gratuit |
+| Web Push (notifications) | gratuit |
+| Hébergement Cloudflare Pages | gratuit (formule de base, à vérifier pour le volume) |
+| Compte développeur Apple | 0 $ : pas d'App Store au début (ADR-001) |
 | Resend | gratuit jusqu'à quelques milliers d'e-mails par mois |
 | Sentry | gratuit au départ |
 | GitHub (dépôt privé et intégration continue) | gratuit dans les limites de base |
