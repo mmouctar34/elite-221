@@ -4,13 +4,13 @@ import { App } from './App'
 
 describe('App', () => {
   it("affiche la marque et l'accueil", () => {
-    render(<App />)
+    render(<App visites={1} />)
     expect(screen.getByText('SPLEAD')).toBeInTheDocument()
     expect(screen.getByRole('heading', { level: 1, name: 'Bienvenue sur SPLEAD' })).toBeInTheDocument()
   })
 
   it('propose les 4 onglets et change d’écran', async () => {
-    render(<App />)
+    render(<App visites={1} />)
     for (const nom of ['Accueil', "S'entraîner", 'Progrès', 'Profil']) {
       expect(screen.getByRole('button', { name: nom })).toBeInTheDocument()
     }
