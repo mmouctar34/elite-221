@@ -34,7 +34,8 @@ En tant que fondateur, je veux que chaque modification soit vérifiée automatiq
 - Étant donné un envoi sur GitHub, quand l'intégration continue tourne, alors l'analyse du code, les tests et la construction passent, sinon la fusion est bloquée.
 - La taille du code chargé à la première ouverture est affichée et dépasse 200 Ko compressés seulement avec un avertissement.
 
-**US-006 Préversion et mise en ligne contrôlée.** Indispensable, 3 points, À préciser (compte Cloudflare et domaine).
+**US-006 Préversion et mise en ligne contrôlée.** Indispensable, 3 points, En cours.
+Avancement au 26/10/2026 : une **préversion unique** est publiée automatiquement sur GitHub Pages à chaque envoi sur `main` : https://mmouctar34.github.io/elite-221/ (workflow `publication-pages.yml`). Cette adresse sert aux essais sur téléphone, pas aux apprenants. Restent : une adresse par branche et une production publiée seulement sur accord écrit (Cloudflare Pages ou autre, avec un nom de domaine), à faire avant la bêta.
 En tant que fondateur, je veux une adresse de test pour chaque branche et une mise en ligne seulement sur mon accord, afin de tout essayer avant les apprenants.
 - Étant donné une branche envoyée, alors une adresse de préversion est créée automatiquement.
 - La production n'est mise à jour que par le script de mise en ligne, après mon accord écrit.

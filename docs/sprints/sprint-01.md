@@ -23,8 +23,8 @@ Chaque user story passera « Terminée » quand sa condition sera levée et prou
 |---|---|---|---|
 | US-005 | Première exécution réelle de la vérification sur GitHub ; protection de `main` activée | Dépôt GitHub (finalement `mmouctar34/elite-221`) | Première exécution **réussie** le 26/10/2026 ; protection de `main` à activer par le fondateur |
 | US-007 | Le contrôle des 44 px et du débordement devient un test automatique | US-042 | À faire |
-| US-001 | Installation réussie sur un vrai téléphone Android | Préversion en ligne (US-006) et téléphone du fondateur | À faire |
-| US-003 | Ouverture en vrai mode avion sur un téléphone Android | Préversion en ligne (US-006) et téléphone du fondateur | À faire |
+| US-001 | Installation réussie sur un vrai téléphone Android | Téléphone du fondateur ; la préversion est en ligne depuis le 26/10/2026 : https://mmouctar34.github.io/elite-221/ | Prêt pour l'essai |
+| US-003 | Ouverture en vrai mode avion sur un téléphone Android | Téléphone du fondateur ; même adresse | Prêt pour l'essai |
 
 ## Blocages
 
