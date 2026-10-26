@@ -197,12 +197,16 @@ p {
   align-items: center;
   gap: var(--espace-1);
   align-self: flex-start;
+  max-width: 100%;
+  min-width: 0;
   padding: var(--espace-1) var(--espace-3);
   border-radius: var(--rayon-rond);
   background: var(--brume);
   color: var(--nuit);
   font-size: var(--taille-petit);
   font-weight: 600;
+  /* Un mot trop long pour l'écran passe à la ligne au lieu de déborder (affichage agrandi) */
+  overflow-wrap: anywhere;
 }
 
 /* Champ de saisie */
@@ -288,7 +292,11 @@ p {
   justify-content: center;
   gap: 2px;
   min-height: 56px;
-  min-width: var(--cible-min);
+  min-width: 0;
+  padding: var(--espace-1) 2px;
+  text-align: center;
+  overflow-wrap: anywhere;
+  hyphens: auto;
   border: none;
   border-radius: var(--rayon-champ);
   background: transparent;
@@ -380,6 +388,22 @@ p {
   font-weight: 800;
   letter-spacing: 0.04em;
   color: var(--indigo);
+}
+
+/* Très petits écrans, ou affichage agrandi (200 % sur un écran de 360 px) */
+@media (max-width: 320px) {
+  .ecran {
+    padding-inline: var(--espace-3);
+  }
+
+  .carte {
+    padding: var(--espace-4);
+  }
+
+  .barre-navigation {
+    gap: 0;
+    padding-inline: var(--espace-1);
+  }
 }
 
 .grille-demo {
