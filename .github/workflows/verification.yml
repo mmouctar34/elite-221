@@ -1,0 +1,50 @@
+# Vérification automatique de chaque modification (US-005).
+# Tourne à chaque envoi sur GitHub et à chaque demande de fusion vers main.
+# Si une étape échoue, la modification ne doit pas être fusionnée.
+name: Verification
+
+on:
+  push:
+    branches: ['**']
+  pull_request:
+    branches: [main]
+
+permissions:
+  contents: read
+
+concurrency:
+  group: verification-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  verifier:
+    name: Analyse, tests, construction et taille
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - name: Recuperer le code
+        uses: actions/checkout@v4
+
+      - name: Installer Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 24
+          cache: npm
+
+      - name: Installer les bibliotheques (versions exactes du package-lock)
+        run: npm ci
+
+      - name: Analyse du code (ESLint)
+        run: npm run lint
+
+      - name: Verification des types (TypeScript strict)
+        run: npm run typecheck
+
+      - name: Tests automatiques
+        run: npm test
+
+      - name: Construction de la PWA
+        run: npm run build
+
+      - name: Taille du code charge a la premiere ouverture
+        run: npm run taille
