@@ -1,6 +1,8 @@
 import { useChemin } from './navigation'
 import { PageDesign } from './pages/PageDesign'
 import { BandeauHorsLigne, BandeauInstallation } from './pwa/Bandeaux'
+import { Vitrine } from './vitrine/Vitrine'
+import { cheminApp } from './ecrans/commun'
 import { Accueil } from './ecrans/Accueil'
 import { Entrainer } from './ecrans/Entrainer'
 import { EcranModule } from './ecrans/Module'
@@ -12,17 +14,22 @@ import { Arene } from './ecrans/Arene'
 import { MonCoach } from './ecrans/MonCoach'
 import { EspaceCoach } from './ecrans/EspaceCoach'
 
-// Un écran par adresse. Une adresse inconnue ramène à l'accueil.
+// « / » : la page d'accueil publique (vitrine). « /app/… » : l'application.
 export function App({ visites }: { visites: number }) {
   const chemin = useChemin().replace(/\/+$/, '') || '/'
 
-  const module = /^\/module\/(\d+)$/.exec(chemin)
+  if (chemin === '/design') return <PageDesign />
+  if (chemin !== '/app' && !chemin.startsWith('/app/')) return <Vitrine />
+
+  const ecran = cheminApp(chemin)
+
+  const module = /^\/module\/(\d+)$/.exec(ecran)
   if (module) return <EcranModule id={Number(module[1])} />
 
-  const lecon = /^\/lecon\/(\d+)\/(\d+)$/.exec(chemin)
+  const lecon = /^\/lecon\/(\d+)\/(\d+)$/.exec(ecran)
   if (lecon) return <EcranLecon idModule={Number(lecon[1])} numero={Number(lecon[2])} />
 
-  switch (chemin) {
+  switch (ecran) {
     case '/entrainer':
       return <Entrainer />
     case '/seance':
@@ -37,9 +44,6 @@ export function App({ visites }: { visites: number }) {
       return <MonCoach />
     case '/coach':
       return <EspaceCoach />
-    case '/design':
-      // Page interne du système de design.
-      return <PageDesign />
     default:
       return (
         <Accueil

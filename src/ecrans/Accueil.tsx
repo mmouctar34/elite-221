@@ -35,7 +35,7 @@ export function Accueil({ bandeaux }: { bandeaux?: ReactNode }) {
       {bandeaux ? <div className="bandeaux">{bandeaux}</div> : null}
 
       <main className="appli__contenu" style={{ paddingTop: 8 }}>
-        <section className="carte-heros">
+        <section className="carte-heros accueil__heros">
           <Cercle style={{ right: -50, top: -50, width: 170, height: 170, background: 'var(--accent-clair)' }} />
           <Cercle style={{ right: 30, top: 60, width: 60, height: 60, background: 'var(--turquoise)' }} />
           <div className="carte-heros__contenu">
@@ -44,13 +44,14 @@ export function Accueil({ bandeaux }: { bandeaux?: ReactNode }) {
               {T.accueil.titreSeance}
             </h2>
             <p style={{ fontSize: 15, lineHeight: 1.4, color: 'var(--texte-sur-accent)' }}>{T.accueil.texteSeance}</p>
-            <Lien vers="/seance" className="bouton-action" style={{ marginTop: 6 }}>
+            <Lien vers="/app/seance" className="bouton-action" style={{ marginTop: 6 }}>
               <Icone icone={Mic} taille={22} trait={2.4} />
               {T.accueil.commencer}
             </Lien>
           </div>
         </section>
 
+        <div className="accueil__colonne">
         <section className="carte-s">
           <h2 className="texte-15-700" style={{ margin: 0 }}>
             {T.accueil.semaine}
@@ -71,7 +72,7 @@ export function Accueil({ bandeaux }: { bandeaux?: ReactNode }) {
           </ol>
         </section>
 
-        <Lien vers={`/lecon/${idModule}/${numLecon}`} className="carte-ligne lien-carte">
+        <Lien vers={`/app/lecon/${idModule}/${numLecon}`} className="carte-ligne lien-carte">
           <div className="icone-carree">
             <Icone icone={BookText} taille={24} />
           </div>
@@ -84,7 +85,7 @@ export function Accueil({ bandeaux }: { bandeaux?: ReactNode }) {
           </span>
         </Lien>
 
-        <Lien vers="/profil" className="carte-ligne lien-carte">
+        <Lien vers="/app/profil" className="carte-ligne lien-carte">
           <div className="icone-carree icone-carree--nuit">
             <Icone icone={Video} taille={24} />
           </div>
@@ -96,6 +97,7 @@ export function Accueil({ bandeaux }: { bandeaux?: ReactNode }) {
             <Icone icone={ChevronRight} trait={2.4} />
           </span>
         </Lien>
+        </div>
       </main>
 
       <BarreBas />

@@ -11,7 +11,7 @@ export function EcranLecon({ idModule, numero }: { idModule: number; numero: num
   if (!module || !lecon || lecon.paragraphes.length === 0) {
     return (
       <Appli variante="blanc">
-        <EnteteRetour vers={`/module/${idModule}`} libelle={T.lecon.retour} titre={T.lecon.introuvable} clair />
+        <EnteteRetour vers={`/app/module/${idModule}`} libelle={T.lecon.retour} titre={T.lecon.introuvable} clair />
       </Appli>
     )
   }
@@ -19,7 +19,7 @@ export function EcranLecon({ idModule, numero }: { idModule: number; numero: num
   return (
     <Appli variante="blanc">
       <header className="entete-lecon">
-        <Lien vers={`/module/${module.id}`} aria-label={T.lecon.retour} className="bouton-rond bouton-rond--fond">
+        <Lien vers={`/app/module/${module.id}`} aria-label={T.lecon.retour} className="bouton-rond bouton-rond--fond">
           <Icone icone={ChevronLeft} taille={22} trait={2.6} />
         </Lien>
         <div style={{ flex: 1, display: 'flex', flexDirection: 'column', gap: 6 }}>
@@ -62,14 +62,14 @@ export function EcranLecon({ idModule, numero }: { idModule: number; numero: num
             </span>
           </div>
           <span style={{ fontSize: 17, lineHeight: 1.4, fontWeight: 700 }}>{lecon.casPratique}</span>
-          <Lien vers="/seance" className="bouton-action bouton-action--52" style={{ marginTop: 4 }}>
+          <Lien vers="/app/seance" className="bouton-action bouton-action--52" style={{ marginTop: 4 }}>
             {T.lecon.lancer}
           </Lien>
         </section>
       </main>
 
       <footer className="pied-fixe pied-fixe--trait">
-        <Lien vers={`/module/${module.id}`} className="bouton-action bouton-action--accent" style={{ flex: 1, height: 54, borderRadius: 27 }}>
+        <Lien vers={`/app/module/${module.id}`} className="bouton-action bouton-action--accent" style={{ flex: 1, height: 54, borderRadius: 27 }}>
           {T.lecon.terminer}
         </Lien>
       </footer>

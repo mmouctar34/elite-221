@@ -1,5 +1,5 @@
 import type { CSSProperties, ReactNode } from 'react'
-import { CalendarDays, ChartNoAxesColumn, ChevronLeft, House, Mic, User, Users, type LucideIcon } from 'lucide-react'
+import { ArrowLeft, CalendarDays, ChartNoAxesColumn, ChevronLeft, House, Mic, User, Users, type LucideIcon } from 'lucide-react'
 import { Lien, useChemin } from '../navigation'
 import { T } from './textes'
 
@@ -15,29 +15,35 @@ export function Cercle({ style }: { style: CSSProperties }) {
   return <div className="cercle" aria-hidden="true" style={style} />
 }
 
+// Chemin à l'intérieur de l'application : « /app/progres » devient « /progres ».
+export function cheminApp(chemin: string): string {
+  return chemin.replace(/^\/app(?=\/|$)/, '') || '/'
+}
+
 type Onglet = { vers: string; libelle: string; icone: LucideIcon; actifSi: (chemin: string) => boolean }
 
 const ongletsApprenant: Onglet[] = [
-  { vers: '/', libelle: T.nav.accueil, icone: House, actifSi: (c) => c === '/' },
+  { vers: '/app', libelle: T.nav.accueil, icone: House, actifSi: (c) => c === '/' },
   {
-    vers: '/entrainer',
+    vers: '/app/entrainer',
     libelle: T.nav.entrainer,
     icone: Mic,
-    actifSi: (c) => c.startsWith('/entrainer') || c.startsWith('/module') || c.startsWith('/arene'),
+    actifSi: (c) => c.startsWith('/entrainer') || c.startsWith('/module') || c.startsWith('/lecon') || c.startsWith('/arene'),
   },
-  { vers: '/progres', libelle: T.nav.progres, icone: ChartNoAxesColumn, actifSi: (c) => c.startsWith('/progres') },
-  { vers: '/profil', libelle: T.nav.profil, icone: User, actifSi: (c) => c.startsWith('/profil') },
+  { vers: '/app/progres', libelle: T.nav.progres, icone: ChartNoAxesColumn, actifSi: (c) => c.startsWith('/progres') || c.startsWith('/analyse') },
+  { vers: '/app/profil', libelle: T.nav.profil, icone: User, actifSi: (c) => c.startsWith('/profil') },
 ]
 
 const ongletsCoach: Onglet[] = [
-  { vers: '/coach', libelle: T.navCoach.apprenants, icone: Users, actifSi: (c) => c === '/coach' },
-  { vers: '/coach', libelle: T.navCoach.agenda, icone: CalendarDays, actifSi: () => false },
-  { vers: '/coach', libelle: T.navCoach.statistiques, icone: ChartNoAxesColumn, actifSi: () => false },
-  { vers: '/profil', libelle: T.navCoach.profil, icone: User, actifSi: () => false },
+  { vers: '/app/coach', libelle: T.navCoach.apprenants, icone: Users, actifSi: (c) => c === '/coach' },
+  { vers: '/app/coach', libelle: T.navCoach.agenda, icone: CalendarDays, actifSi: () => false },
+  { vers: '/app/coach', libelle: T.navCoach.statistiques, icone: ChartNoAxesColumn, actifSi: () => false },
+  { vers: '/app/profil', libelle: T.navCoach.profil, icone: User, actifSi: () => false },
 ]
 
+// Barre du bas : sur téléphone seulement (masquée sur ordinateur par la feuille de style).
 export function BarreBas({ coach = false }: { coach?: boolean }) {
-  const chemin = useChemin()
+  const chemin = cheminApp(useChemin())
   const onglets = coach ? ongletsCoach : ongletsApprenant
   return (
     <nav className="barre-bas" aria-label={coach ? T.navCoach.libelle : T.nav.libelle}>
@@ -50,6 +56,41 @@ export function BarreBas({ coach = false }: { coach?: boolean }) {
         </Lien>
       ))}
     </nav>
+  )
+}
+
+// Menu latéral : sur ordinateur seulement.
+export function BarreLaterale() {
+  const chemin = cheminApp(useChemin())
+  return (
+    <aside className="barre-laterale">
+      <Lien vers="/" className="barre-laterale__marque" aria-label={T.laterale.marque}>
+        <span className="marque-ronde__pastille" aria-hidden="true">
+          S
+        </span>
+        <span className="barre-laterale__nom">
+          SPLEAD
+          <span className="barre-laterale__devise">{T.laterale.devise}</span>
+        </span>
+      </Lien>
+      <nav aria-label={T.laterale.libelle} className="barre-laterale__nav">
+        {ongletsApprenant.map((o) => (
+          <Lien key={o.libelle} vers={o.vers} className="barre-laterale__lien" aria-current={o.actifSi(chemin) ? 'page' : undefined}>
+            <Icone icone={o.icone} />
+            {o.libelle}
+          </Lien>
+        ))}
+        <span className="barre-laterale__separateur" aria-hidden="true" />
+        <Lien vers="/app/coach" className="barre-laterale__lien" aria-current={chemin === '/coach' ? 'page' : undefined}>
+          <Icone icone={Users} />
+          {T.laterale.espaceCoach}
+        </Lien>
+      </nav>
+      <Lien vers="/" className="barre-laterale__lien barre-laterale__retour">
+        <Icone icone={ArrowLeft} />
+        {T.laterale.retourSite}
+      </Lien>
+    </aside>
   )
 }
 
@@ -72,6 +113,13 @@ export function Barre({ valeur, className = '', couleur }: { valeur: number; cla
   )
 }
 
-export function Appli({ children, variante }: { children: ReactNode; variante?: 'nuit' | 'blanc' }) {
-  return <div className={`appli${variante ? ` appli--${variante}` : ''}`}>{children}</div>
+// Cadre de l'application : menu latéral sur ordinateur, colonne téléphone sur mobile.
+// « immersif » : la séance s'affiche seule, sans menu, pour rester concentré.
+export function Appli({ children, variante, immersif = false }: { children: ReactNode; variante?: 'nuit' | 'blanc'; immersif?: boolean }) {
+  return (
+    <div className={`coque${immersif ? ' coque--immersive' : ''}${variante ? ` coque--${variante}` : ''}`}>
+      {immersif ? null : <BarreLaterale />}
+      <div className={`appli${variante ? ` appli--${variante}` : ''}`}>{children}</div>
+    </div>
+  )
 }

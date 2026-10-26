@@ -18,7 +18,7 @@ export function EcranModule({ id }: { id: number }) {
       <header className="entete-module">
         <Cercle style={{ right: -40, top: -40, width: 150, height: 150, background: 'var(--accent-clair)', position: 'absolute' }} />
         <Cercle style={{ right: 26, top: 40, width: 46, height: 46, background: 'var(--turquoise)', position: 'absolute' }} />
-        <Lien vers="/entrainer" aria-label={T.commun.retour} className="bouton-rond">
+        <Lien vers="/app/entrainer" aria-label={T.commun.retour} className="bouton-rond">
           <Icone icone={ChevronLeft} taille={22} trait={2.6} />
         </Lien>
         <span className="surtitre" style={{ color: 'var(--turquoise-clair)' }}>
@@ -34,7 +34,7 @@ export function EcranModule({ id }: { id: number }) {
 
       <main className="appli__contenu" style={{ paddingTop: 16, gap: 10 }}>
         {!premierModule ? (
-          <p className="carte-s" style={{ fontSize: 15, lineHeight: 1.4 }}>
+          <p className="carte-s pleine" style={{ fontSize: 15, lineHeight: 1.4 }}>
             {T.module.reserve}
           </p>
         ) : null}
@@ -44,7 +44,7 @@ export function EcranModule({ id }: { id: number }) {
           const active = l.numero === enCours
           if (faite) {
             return (
-              <Lien key={l.numero} vers={`/lecon/${module.id}/${l.numero}`} className="carte-ligne carte-ligne--18 lien-carte">
+              <Lien key={l.numero} vers={`/app/lecon/${module.id}/${l.numero}`} className="carte-ligne carte-ligne--18 lien-carte">
                 <span className="rond-etat rond-etat--faite" aria-hidden="true">
                   <Icone icone={Check} taille={16} trait={3.2} />
                 </span>
@@ -58,7 +58,7 @@ export function EcranModule({ id }: { id: number }) {
           if (active) {
             return (
               <div key={l.numero} className="carte-ligne carte-ligne--18 carte-ligne--active">
-                <Lien vers={`/lecon/${module.id}/${l.numero}`} className="lien-carte" style={{ display: 'flex', alignItems: 'center', gap: 12, flex: 1, minWidth: 0 }}>
+                <Lien vers={`/app/lecon/${module.id}/${l.numero}`} className="lien-carte" style={{ display: 'flex', alignItems: 'center', gap: 12, flex: 1, minWidth: 0, minHeight: 44 }}>
                   <span className="rond-etat rond-etat--en-cours" aria-hidden="true">
                     <Icone icone={Play} taille={14} plein trait={0} />
                   </span>
@@ -89,7 +89,7 @@ export function EcranModule({ id }: { id: number }) {
           )
         })}
 
-        <div className="carte-ligne carte-ligne--18" style={{ background: 'var(--nuit)', color: 'var(--blanc)', padding: 14 }}>
+        <div className="carte-ligne carte-ligne--18 pleine" style={{ background: 'var(--nuit)', color: 'var(--blanc)', padding: 14 }}>
           <span className="rond-etat rond-etat--en-cours" aria-hidden="true">
             <Icone icone={Mic} taille={18} trait={2.4} />
           </span>
