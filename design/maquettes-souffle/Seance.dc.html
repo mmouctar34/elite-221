@@ -1,0 +1,73 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<title>SPLEAD Séance</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@500;600;700;800&display=swap" rel="stylesheet">
+<style>
+body{margin:0}
+button{font-family:inherit}
+</style>
+</helmet>
+<div style="width: 390px; height: 844px; box-sizing: border-box; display: flex; flex-direction: column; background: #1E1B4B; color: #FFFFFF; font-family: 'Plus Jakarta Sans', system-ui, sans-serif; overflow: hidden">
+
+<header style="display: flex; align-items: center; justify-content: space-between; padding: 16px 16px 8px">
+<a href="Main.dc.html" aria-label="Quitter la séance" style="width: 44px; height: 44px; border-radius: 50%; background: #2E2A6B; color: #FFFFFF; display: flex; align-items: center; justify-content: center">
+<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg>
+</a>
+<span style="padding: 8px 14px; border-radius: 18px; background: #2E2A6B; font-size: 14px; font-weight: 700">Pitch · 60 s</span>
+<span style="width: 44px"></span>
+</header>
+
+<main style="flex: 1; padding: 12px 24px 0; display: flex; flex-direction: column; align-items: center; gap: 22px">
+
+<section style="width: 100%; box-sizing: border-box; background: #2E2A6B; border-radius: 24px; padding: 20px; display: flex; flex-direction: column; gap: 8px">
+<span style="font-size: 13px; font-weight: 800; letter-spacing: 0.06em; text-transform: uppercase; color: #2DD4BF">Ton sujet</span>
+<span style="font-size: 22px; line-height: 1.25; font-weight: 800">Convaincs un recruteur de te choisir, en 60 secondes.</span>
+<span style="font-size: 15px; line-height: 1.4; color: #CFCBFF">Une idée forte, un exemple, une conclusion.</span>
+</section>
+
+<section style="position: relative; width: 240px; height: 240px; display: flex; align-items: center; justify-content: center; margin-top: 6px">
+<div style="position: absolute; inset: 0; border-radius: 50%; background: #2A2662"></div>
+<div style="position: absolute; inset: 28px; border-radius: 50%; background: #3B3585"></div>
+<div style="position: absolute; inset: 56px; border-radius: 50%; background: #2DD4BF; display: flex; align-items: center; justify-content: center; color: #1E1B4B">
+<svg width="52" height="52" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="9" y="3" width="6" height="12" rx="3"/><path d="M5.5 11a6.5 6.5 0 0 0 13 0"/><path d="M12 17.5V21"/></svg>
+</div>
+</section>
+
+<svg width="260" height="44" viewBox="0 0 260 44" role="img" aria-label="Onde sonore de ta voix" style="display: block">
+<g fill="#2DD4BF">
+<rect x="4" y="16" width="8" height="12" rx="4"/><rect x="22" y="10" width="8" height="24" rx="4"/><rect x="40" y="4" width="8" height="36" rx="4"/><rect x="58" y="12" width="8" height="20" rx="4"/><rect x="76" y="18" width="8" height="8" rx="4"/><rect x="94" y="8" width="8" height="28" rx="4"/><rect x="112" y="2" width="8" height="40" rx="4"/><rect x="130" y="12" width="8" height="20" rx="4"/><rect x="148" y="6" width="8" height="32" rx="4"/><rect x="166" y="14" width="8" height="16" rx="4"/>
+</g>
+<g fill="#4A4590">
+<rect x="184" y="16" width="8" height="12" rx="4"/><rect x="202" y="16" width="8" height="12" rx="4"/><rect x="220" y="16" width="8" height="12" rx="4"/><rect x="238" y="16" width="8" height="12" rx="4"/>
+</g>
+</svg>
+
+<div style="display: flex; flex-direction: column; align-items: center; gap: 2px">
+<span style="font-size: 44px; font-weight: 800; letter-spacing: 0.02em">00:42</span>
+<span style="font-size: 14px; color: #CFCBFF">sur 01:00</span>
+</div>
+</main>
+
+<footer style="display: flex; gap: 12px; padding: 12px 24px 32px">
+<button style="flex: 1; height: 56px; border: 0; border-radius: 28px; background: #2E2A6B; color: #FFFFFF; font-size: 16px; font-weight: 700">Pause</button>
+<a href="Analyse.dc.html" style="flex: 2; height: 56px; border-radius: 28px; background: #2DD4BF; color: #1E1B4B; text-decoration: none; font-size: 17px; font-weight: 800; display: flex; align-items: center; justify-content: center">Terminer et analyser</a>
+</footer>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":390,"height":844}}'>
+class Component extends DCLogic {
+renderVals() {
+return {};
+}
+}
+</script>
+</body>
+</html>

@@ -1,0 +1,92 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<title>SPLEAD Direction visuelle</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@500;600;700;800&display=swap" rel="stylesheet">
+<style>
+body{margin:0}
+</style>
+</helmet>
+<div style="width: 560px; height: 844px; box-sizing: border-box; padding: 40px; display: flex; flex-direction: column; gap: 28px; background: #F3F1FF; color: #1E1B4B; font-family: 'Plus Jakarta Sans', system-ui, sans-serif; overflow: hidden">
+
+<div style="display: flex; flex-direction: column; gap: 10px">
+<span style="font-size: 13px; font-weight: 800; letter-spacing: 0.08em; text-transform: uppercase; color: {{accent}}">Direction visuelle · « Souffle »</span>
+<h1 style="margin: 0; font-size: 40px; line-height: 1.08; font-weight: 800">Une séance par jour.<br>Une voix qui grandit.</h1>
+<p style="margin: 0; font-size: 17px; line-height: 1.5; color: #4B4A6B; font-weight: 500">Une app d'entraînement, pas un cours. Le micro est au centre, tout est arrondi et calme, et le turquoise ne sert qu'à l'action. Aucun emoji : uniquement des icônes à trait uniforme.</p>
+</div>
+
+<div style="display: flex; flex-direction: column; gap: 12px">
+<h2 style="margin: 0; font-size: 14px; font-weight: 800; letter-spacing: 0.06em; text-transform: uppercase; color: #4B4A6B">Couleurs</h2>
+<div style="display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 10px">
+<div style="display: flex; flex-direction: column; gap: 6px">
+<div style="height: 76px; border-radius: 20px; background: #1E1B4B"></div>
+<span style="font-size: 14px; font-weight: 800">Nuit</span>
+<span style="font-size: 12px; color: #4B4A6B">#1E1B4B<br>texte, séance</span>
+</div>
+<div style="display: flex; flex-direction: column; gap: 6px">
+<div style="height: 76px; border-radius: 20px; background: {{accent}}"></div>
+<span style="font-size: 14px; font-weight: 800">Indigo</span>
+<span style="font-size: 12px; color: #4B4A6B">{{accent}}<br>marque</span>
+</div>
+<div style="display: flex; flex-direction: column; gap: 6px">
+<div style="height: 76px; border-radius: 20px; background: #2DD4BF"></div>
+<span style="font-size: 14px; font-weight: 800">Turquoise</span>
+<span style="font-size: 12px; color: #4B4A6B">#2DD4BF<br>action</span>
+</div>
+<div style="display: flex; flex-direction: column; gap: 6px">
+<div style="height: 76px; border-radius: 20px; background: #E4E0FF"></div>
+<span style="font-size: 14px; font-weight: 800">Brume</span>
+<span style="font-size: 12px; color: #4B4A6B">#E4E0FF<br>pastilles</span>
+</div>
+<div style="display: flex; flex-direction: column; gap: 6px">
+<div style="height: 76px; border-radius: 20px; background: #FFFFFF; border: 1px solid #D9D4F7; box-sizing: border-box"></div>
+<span style="font-size: 14px; font-weight: 800">Blanc</span>
+<span style="font-size: 12px; color: #4B4A6B">#FFFFFF<br>cartes</span>
+</div>
+</div>
+</div>
+
+<div style="display: flex; gap: 24px; align-items: flex-end">
+<div style="flex: 1; display: flex; flex-direction: column; gap: 2px">
+<span style="font-size: 52px; line-height: 1; font-weight: 800">Aa</span>
+<span style="font-size: 15px; font-weight: 800">Plus Jakarta Sans</span>
+<span style="font-size: 13px; color: #4B4A6B">Une seule police, du 500 au 800. Texte à 15 px minimum.</span>
+</div>
+</div>
+
+<div style="display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px">
+<div style="background: #FFFFFF; border-radius: 22px; padding: 16px; display: flex; flex-direction: column; gap: 4px">
+<span style="font-size: 16px; font-weight: 800">Le micro au centre</span>
+<span style="font-size: 14px; line-height: 1.4; color: #4B4A6B">Un grand bouton rond pour parler, des ondes sonores qui bougent, un compte à rebours clair.</span>
+</div>
+<div style="background: #FFFFFF; border-radius: 22px; padding: 16px; display: flex; flex-direction: column; gap: 4px">
+<span style="font-size: 16px; font-weight: 800">Coaching bienveillant</span>
+<span style="font-size: 14px; line-height: 1.4; color: #4B4A6B">Des points forts avant les points à travailler, une série de jours et des badges.</span>
+</div>
+<div style="background: #FFFFFF; border-radius: 22px; padding: 16px; display: flex; flex-direction: column; gap: 4px">
+<span style="font-size: 16px; font-weight: 800">Léger</span>
+<span style="font-size: 14px; line-height: 1.4; color: #4B4A6B">Formes dessinées en code, pas de grosses images, prévu pour les connexions lentes.</span>
+</div>
+<div style="background: #FFFFFF; border-radius: 22px; padding: 16px; display: flex; flex-direction: column; gap: 4px">
+<span style="font-size: 16px; font-weight: 800">À toi de choisir</span>
+<span style="font-size: 14px; line-height: 1.4; color: #4B4A6B">Le bouton « Tweaks » de chaque écran change l'indigo en vert sapin ou en bleu.</span>
+</div>
+</div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"accent":{"editor":"color","default":"#4F46E5","options":["#4F46E5","#0F766E","#1D4ED8"]},"$preview":{"width":560,"height":844}}'>
+class Component extends DCLogic {
+renderVals() {
+return { accent: this.props.accent ?? '#4F46E5' };
+}
+}
+</script>
+</body>
+</html>
