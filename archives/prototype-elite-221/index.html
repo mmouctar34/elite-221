@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>SPLEAD – Programme Élite 221</title>
+
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=DM+Sans:wght@300;400;500;600&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet" />
+
+  <!-- 1. FEUILLE DE STYLE -->
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <!-- ══════════ TOPBAR ══════════ -->
+  <nav class="topbar">
+    <div class="logo">
+      <div class="logo-icon">S</div>
+      <div>
+        <div class="logo-text">SPLEAD</div>
+        <span class="logo-sub">Connais-toi toi-même</span>
+      </div>
+    </div>
+    <div class="nav-tabs">
+      <button class="nav-tab active" data-screen="home">Accueil</button>
+      <button class="nav-tab" data-screen="modules">Modules</button>
+      <button class="nav-tab" data-screen="lesson">Formation</button>
+      <button class="nav-tab" data-screen="quiz">Quiz Final</button>
+    </div>
+    <div class="progress-pill" id="global-progress">0 / 12 leçons</div>
+  </nav>
+
+  <!-- ══════════ ÉCRAN : ACCUEIL ══════════ -->
+  <section class="screen active" id="screen-home">
+    <div class="hero">
+      <div class="hero-badge"><span class="pulse-dot"></span> Programme 2026 · Dakar, Sénégal 🇸🇳</div>
+      <h1>Deviens la<br>meilleure version<br>de <em>toi-même</em></h1>
+      <p>
+        Une formation intensive en Prise de Parole, Leadership Moderne et
+        Développement Personnel — conçue pour transformer ton impact.
+      </p>
+      <div class="hero-cta">
+        <button class="btn-primary" data-goto="modules">Commencer la formation →</button>
+        <button class="btn-outline" data-goto="quiz">Tester mes connaissances</button>
+      </div>
+      <div class="hero-stats">
+        <div class="stat"><div class="stat-num">3</div><div class="stat-label">Modules d'élite</div></div>
+        <div class="stat"><div class="stat-num">12</div><div class="stat-label">Leçons complètes</div></div>
+        <div class="stat"><div class="stat-num">2J</div><div class="stat-label">Format intensif</div></div>
+        <div class="stat"><div class="stat-num">221</div><div class="stat-label">Made in Sénégal</div></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════ ÉCRAN : MODULES ══════════ -->
+  <section class="screen" id="screen-modules">
+    <div class="page-header">
+      <div>
+        <div class="page-title">Nos <span>Modules</span></div>
+        <div class="page-sub">3 piliers fondamentaux pour un impact 360°</div>
+      </div>
+    </div>
+    <div class="modules-grid" id="modules-grid">
+      <!-- Généré dynamiquement par JS -->
+    </div>
+  </section>
+
+  <!-- ══════════ ÉCRAN : LEÇON ══════════ -->
+  <section class="screen" id="screen-lesson">
+    <div class="lesson-layout">
+      <aside class="sidebar">
+        <div class="sidebar-title">Programme</div>
+        <div id="sidebar-content"></div>
+      </aside>
+      <main class="lesson-content" id="lesson-content-area"></main>
+    </div>
+  </section>
+
+  <!-- ══════════ ÉCRAN : QUIZ ══════════ -->
+  <section class="screen" id="screen-quiz">
+    <div class="quiz-container">
+      <div id="quiz-area"></div>
+    </div>
+  </section>
+
+  <!-- 2. SCRIPT JAVASCRIPT -->
+  <script src="app.js"></script>
+</body>
+</html>

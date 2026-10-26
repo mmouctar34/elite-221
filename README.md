@@ -17,6 +17,10 @@ Statut : **cadrage validé le 17 octobre 2026. Jalon en cours : J1 – Fondation
 - [Brief initial](docs/BRIEF_INITIAL.md) : la demande d'origine du fondateur.
 - [Consignes pour Claude](CLAUDE.md).
 
+## Archives
+
+Le premier prototype (site statique elite-221) est conservé, figé, dans [archives/prototype-elite-221](archives/prototype-elite-221/LISEZMOI.md).
+
 ## Design
 
 Les captures d'écran de référence vont dans [design/](design/LISEZMOI.md).
