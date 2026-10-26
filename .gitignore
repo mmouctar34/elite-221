@@ -1,3 +1,9 @@
+# Dossiers generes (reconstruits par npm install et npm run build)
+node_modules/
+dist/
+dev-dist/
+coverage/
+
 # Secrets
 .env
 .env.*
