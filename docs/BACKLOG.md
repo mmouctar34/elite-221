@@ -203,6 +203,18 @@ En tant qu'apprenant, je veux télécharger toutes mes données, afin d'exercer 
 **US-040 Connaître l'origine des inscrits.** Souhaitable, 2 points, Prête.
 En tant que fondateur, je veux savoir d'où viennent les inscrits (QR code, WhatsApp, TikTok…), afin de savoir quels canaux marchent.
 
+## E-17 Freemium et abonnement (ajoutée le 26/10/2026, après les écrans)
+
+Règle provisoire décidée par le fondateur : **gratuit** = module 1 complet, 3 séances analysées par semaine, Arène en spectateur ; **abonnement** = les 3 modules, une séance analysée par jour, l'Arène et le classement, Mon coach (meets, retours), le certificat. Prix `[À COMPLÉTER]`.
+
+**US-043 Voir ce qui est réservé à l'abonnement.** Important, 2 points, Prête (amorcée : pastille « Abonnement » sur les modules 2 et 3).
+En tant qu'apprenant gratuit, je veux voir clairement ce que l'abonnement débloque, afin de décider s'il m'intéresse.
+
+**US-044 Limiter les droits du compte gratuit, côté serveur.** Indispensable, 5 points, À préciser (comptes, E-03).
+- Le serveur refuse une 4e séance analysée dans la semaine pour un compte gratuit, et l'accès aux modules 2 et 3, même si le téléphone est modifié.
+
+**US-045 Souscrire un abonnement.** Indispensable, 8 points, À préciser (prix, prestataire de paiement, E-13).
+
 ## Après le MVP (version 1.1 et plus tard)
 
 | Épopée | Contenu | Priorité |

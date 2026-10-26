@@ -25,10 +25,12 @@ Lis [docs/CADRAGE.md](docs/CADRAGE.md), [docs/ARCHITECTURE.md](docs/ARCHITECTURE
 - Un seul coach au lancement, mais la base prévoit plusieurs coachs.
 - Audio supprimé au bout de 90 jours ; analyses conservées tant que le compte existe.
 - Textes du prototype `elite-221` réutilisés après réécriture (tutoiement, sans emoji, corrections Mehrabian et posture de pouvoir).
-- Cadrage, architecture et feuille de route **validés par le fondateur le 17 octobre 2026**. Stack depuis le 26 octobre 2026 : **PWA** (React, TypeScript, Vite) sur Cloudflare Pages, Supabase, transcription choisie après essai, Claude pour l'analyse ([ADR-001](docs/adr/ADR-001-pwa.md)).
+- Cadrage, architecture et feuille de route **validés par le fondateur le 17 octobre 2026**. Stack depuis le 26 octobre 2026 : **PWA** (React, TypeScript, Vite) hébergée sur **Vercel** ([ADR-002](docs/adr/ADR-002-hebergement-vercel.md)), Supabase, transcription choisie après essai, Claude pour l'analyse ([ADR-001](docs/adr/ADR-001-pwa.md)).
 - Processus, équipe d'agents et commandes `/sprint`, `/recette`, `/rapport` : [docs/PROCESSUS.md](docs/PROCESSUS.md). Backlog : [docs/BACKLOG.md](docs/BACKLOG.md).
 
 ## Design « Souffle »
+
+**Référence obligatoire** : la maquette validée « SPLEAD Design », copiée dans [design/maquettes-souffle/](design/LISEZMOI.md). Tout écran nouveau ou modifié doit la suivre ; s'il n'a pas de maquette, demander au fondateur avant de l'inventer.
 
 - Aéré, très arrondi, calme : cartes blanches sur fond lavande, grand bouton micro rond au centre de la séance.
 - Couleurs :
