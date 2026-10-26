@@ -1,4 +1,13 @@
 {
   "app.nom": "SPLEAD",
-  "accueil.bientot": "Ton entraînement quotidien à la prise de parole arrive bientôt."
+  "accueil.bientot": "Ton entraînement quotidien à la prise de parole arrive bientôt.",
+  "accueil.titre": "Bienvenue sur SPLEAD",
+  "accueil.promesse": "Une séance par jour. Tu parles, tu reçois tout de suite un retour clair, et un vrai coach suit tes progrès.",
+  "nav.libelle": "Navigation principale",
+  "nav.accueil": "Accueil",
+  "nav.entrainer": "S'entraîner",
+  "nav.progres": "Progrès",
+  "nav.profil": "Profil",
+  "ecran.bientot.titre": "{ecran} arrive bientôt",
+  "ecran.bientot.texte": "Cet écran sera construit dans un prochain sprint."
 }
