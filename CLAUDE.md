@@ -21,7 +21,7 @@ Lis [docs/CADRAGE.md](docs/CADRAGE.md), [docs/ARCHITECTURE.md](docs/ARCHITECTURE
 
 ## Décisions prises (17 octobre 2026)
 
-- Nom : **SPLEAD**. Dépôt : `Projet Senpai\SPLEAD`, futur dépôt GitHub privé `mmouctar34/splead`.
+- Nom : **SPLEAD**. Dépôt local : `Projet Senpai\SPLEAD`. Dépôt GitHub : **`mmouctar34/elite-221`** (public), depuis le 26 octobre 2026 ; l'ancien prototype est archivé dans `archives/prototype-elite-221` (archive figée, hors des règles du projet).
 - Un seul coach au lancement, mais la base prévoit plusieurs coachs.
 - Audio supprimé au bout de 90 jours ; analyses conservées tant que le compte existe.
 - Textes du prototype `elite-221` réutilisés après réécriture (tutoiement, sans emoji, corrections Mehrabian et posture de pouvoir).

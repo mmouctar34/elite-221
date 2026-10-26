@@ -154,6 +154,7 @@ Indicateurs à suivre pendant la bêta fermée (les cibles sont à fixer par le 
 | 17/10/2026 | Textes de `elite-221` réutilisés après réécriture (tutoiement, sans emoji, corrections de fond) |
 | 17/10/2026 | Cadrage, architecture et feuille de route validés par le fondateur |
 | 18/10/2026 | Connexion : compte Google et code par e-mail ; SMS plus tard, selon le budget |
+| 26/10/2026 | Dépôt GitHub : `mmouctar34/elite-221` (public) au lieu d'un nouveau dépôt privé ; SPLEAD remplace le prototype, archivé avec son historique |
 | 26/10/2026 | **PWA d'abord** au lieu de Flutter ; pas d'App Store au début ; Google Play facultatif via TWA ([ADR-001](adr/ADR-001-pwa.md)) |
 
 ## 12. Questions encore ouvertes
