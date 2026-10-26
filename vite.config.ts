@@ -27,9 +27,9 @@ export default defineConfig({
         description: "Une séance par jour pour mieux parler en public, avec un retour immédiat et un vrai coach.",
         lang: 'fr',
         dir: 'ltr',
-        // Relatives au manifeste : fonctionnent à la racine comme dans /elite-221/.
-        start_url: './',
-        scope: './',
+        // L'icône installée ouvre directement l'application (/app), pas la page de présentation.
+        start_url: `${BASE}app`,
+        scope: BASE,
         display: 'standalone',
         orientation: 'portrait',
         background_color: FOND,

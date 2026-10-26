@@ -39,9 +39,9 @@ export function Seance() {
   }
 
   return (
-    <Appli variante="nuit">
+    <Appli variante="nuit" immersif>
       <header style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', padding: '16px 16px 8px' }}>
-        <Lien vers="/" aria-label={T.seance.quitter} className="bouton-rond bouton-rond--nuit">
+        <Lien vers="/app" aria-label={T.seance.quitter} className="bouton-rond bouton-rond--nuit">
           <Icone icone={X} trait={2.6} />
         </Lien>
         <span style={{ padding: '8px 14px', borderRadius: 18, background: 'var(--nuit-2)', fontSize: 14, fontWeight: 700 }}>{T.seance.scenario}</span>
@@ -90,7 +90,7 @@ export function Seance() {
         <button type="button" className="bouton-action bouton-action--nuit" style={{ flex: 1 }} onClick={basculer} disabled={etat === 'pret' || fini}>
           {etat === 'pause' ? T.seance.reprendre : T.seance.pause}
         </button>
-        <Lien vers="/analyse" className="bouton-action" style={{ flex: 2 }}>
+        <Lien vers="/app/analyse" className="bouton-action" style={{ flex: 2 }}>
           {T.seance.terminer}
         </Lien>
       </footer>

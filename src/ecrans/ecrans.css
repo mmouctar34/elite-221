@@ -864,6 +864,259 @@
   gap: 8px;
 }
 
+/* ---------- Cadre : téléphone par défaut, ordinateur à partir de 1024 px ---------- */
+
+.coque {
+  min-height: 100dvh;
+}
+
+.coque--nuit {
+  background: var(--nuit);
+}
+
+.coque--blanc {
+  background: var(--blanc);
+}
+
+.barre-laterale {
+  display: none;
+}
+
+/* Sur téléphone, la colonne de l'accueil ne change rien à la mise en page. */
+.accueil__colonne {
+  display: contents;
+}
+
+.liste-modules {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.liste-apprenants {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+@media (min-width: 1024px) {
+  .coque {
+    display: grid;
+    grid-template-columns: 264px minmax(0, 1fr);
+    align-items: start;
+  }
+
+  .coque--immersive {
+    display: block;
+  }
+
+  .barre-laterale {
+    position: sticky;
+    top: 0;
+    height: 100dvh;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    gap: 28px;
+    padding: 28px 18px;
+    background: var(--blanc);
+    border-radius: 0 28px 28px 0;
+    box-shadow: 4px 0 24px rgba(30, 27, 75, 0.05);
+  }
+
+  .barre-laterale__marque {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 4px 10px;
+    text-decoration: none;
+    color: var(--nuit);
+    min-height: 44px;
+  }
+
+  .barre-laterale__nom {
+    display: flex;
+    flex-direction: column;
+    font-size: 18px;
+    font-weight: 800;
+    letter-spacing: 0.06em;
+  }
+
+  .barre-laterale__devise {
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 0;
+    color: var(--texte-secondaire);
+  }
+
+  .barre-laterale__nav {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+  }
+
+  .barre-laterale__lien {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    min-height: 48px;
+    padding: 0 14px;
+    border-radius: 16px;
+    text-decoration: none;
+    font-size: 15px;
+    font-weight: 600;
+    color: var(--texte-secondaire);
+  }
+
+  .barre-laterale__lien:hover {
+    background: var(--fond);
+    color: var(--nuit);
+  }
+
+  .barre-laterale__lien[aria-current='page'] {
+    background: var(--brume);
+    color: var(--accent);
+    font-weight: 800;
+  }
+
+  .barre-laterale__separateur {
+    height: 1px;
+    margin: 8px 14px;
+    background: var(--brume);
+  }
+
+  .barre-laterale__retour {
+    margin-top: auto;
+  }
+
+  .barre-bas {
+    display: none;
+  }
+
+  .appli {
+    max-width: none;
+    margin: 0;
+    min-height: 100dvh;
+    padding-bottom: 40px;
+  }
+
+  .coque--immersive .appli {
+    max-width: 560px;
+    margin: 0 auto;
+  }
+
+  .appli > header,
+  .salutation,
+  .bandeaux {
+    box-sizing: border-box;
+    width: 100%;
+    max-width: 1200px;
+    padding-left: 40px;
+    padding-right: 40px;
+  }
+
+  .titre-ecran {
+    padding-top: 36px;
+  }
+
+  .titre-ecran h1,
+  .salutation__prenom {
+    font-size: 32px;
+  }
+
+  .appli > header.entete-module {
+    width: auto;
+    margin: 0 40px;
+    border-radius: 0 0 32px 32px;
+    padding: 20px 32px 28px;
+    max-width: 1120px;
+  }
+
+  .appli__contenu {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    align-items: start;
+    align-content: start;
+    gap: 20px;
+    width: 100%;
+    max-width: 1200px;
+    box-sizing: border-box;
+    padding: 16px 40px 40px;
+  }
+
+  .appli__contenu > .pleine {
+    grid-column: 1 / -1;
+  }
+
+  .accueil__heros {
+    padding: 36px;
+  }
+
+  .accueil__colonne {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
+
+  /* Le logo est déjà dans le menu latéral : on garde seulement la série dans l'en-tête. */
+  .entete-accueil {
+    justify-content: flex-end;
+    padding-top: 28px;
+  }
+
+  .entete-accueil .marque-ronde {
+    display: none;
+  }
+
+  .accueil__heros h2 {
+    font-size: 36px !important;
+  }
+
+  .liste-modules {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 14px;
+  }
+
+  .liste-modules > h2 {
+    grid-column: 1 / -1;
+  }
+
+  .liste-apprenants {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 14px;
+  }
+
+  .entete-lecon,
+  .lecon {
+    box-sizing: border-box;
+    width: 100%;
+    max-width: 800px;
+    margin: 0 auto;
+  }
+
+  .lecon {
+    padding-top: 16px;
+  }
+
+  .pied-fixe {
+    box-sizing: border-box;
+    width: 100%;
+    max-width: 1200px;
+    padding-left: 40px;
+    padding-right: 40px;
+  }
+
+  .appli--blanc .pied-fixe {
+    max-width: 800px;
+    margin: 0 auto;
+  }
+}
+
 @media (max-width: 340px) {
   .appli__contenu,
   .lecon {

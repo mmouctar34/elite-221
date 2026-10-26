@@ -8,10 +8,10 @@ export function Analyse() {
   const a = analyseExemple
   return (
     <Appli>
-      <EnteteRetour vers="/" libelle={T.analyse.retour} titre={T.analyse.titre} />
+      <EnteteRetour vers="/app" libelle={T.analyse.retour} titre={T.analyse.titre} />
 
       <main className="appli__contenu">
-        <section className="carte-heros carte-heros--26" style={{ display: 'flex', flexDirection: 'column', gap: 6 }}>
+        <section className="carte-heros carte-heros--26 pleine" style={{ display: 'flex', flexDirection: 'column', gap: 6 }}>
           <span className="surtitre" style={{ color: 'var(--turquoise-clair)' }}>
             {T.analyse.resume}
           </span>
@@ -66,10 +66,10 @@ export function Analyse() {
       </main>
 
       <footer className="pied-fixe">
-        <Lien vers="/seance" className="bouton-action bouton-action--blanc" style={{ flex: 1, height: 54, borderRadius: 27, fontSize: 16 }}>
+        <Lien vers="/app/seance" className="bouton-action bouton-action--blanc" style={{ flex: 1, height: 54, borderRadius: 27, fontSize: 16 }}>
           {T.analyse.reessayer}
         </Lien>
-        <Lien vers="/progres" className="bouton-action" style={{ flex: 1, height: 54, borderRadius: 27, fontSize: 16 }}>
+        <Lien vers="/app/progres" className="bouton-action" style={{ flex: 1, height: 54, borderRadius: 27, fontSize: 16 }}>
           {T.analyse.enregistrer}
         </Lien>
       </footer>

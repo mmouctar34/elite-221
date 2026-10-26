@@ -13,7 +13,7 @@ const couleursRangs: Record<number, { fond: string; texte: string }> = {
 export function Arene() {
   return (
     <Appli>
-      <EnteteRetour vers="/entrainer" libelle={T.commun.retour} titre={T.arene.titre} />
+      <EnteteRetour vers="/app/entrainer" libelle={T.commun.retour} titre={T.arene.titre} />
 
       <main className="appli__contenu">
         <section className="carte-heros carte-heros--26" style={{ display: 'flex', flexDirection: 'column', gap: 6 }}>
@@ -22,7 +22,7 @@ export function Arene() {
             {T.arene.defi(arene.numero, arene.finDans)}
           </span>
           <h2 style={{ position: 'relative', margin: 0, fontSize: 22, lineHeight: 1.2, fontWeight: 800, width: '85%', color: 'inherit' }}>{arene.sujet}</h2>
-          <Lien vers="/seance" className="bouton-action bouton-action--52" style={{ position: 'relative', marginTop: 8, gap: 8 }}>
+          <Lien vers="/app/seance" className="bouton-action bouton-action--52" style={{ position: 'relative', marginTop: 8, gap: 8 }}>
             <Icone icone={Mic} trait={2.4} />
             {T.arene.relever}
           </Lien>

@@ -90,7 +90,7 @@ export function MonCoach() {
           </button>
         </section>
 
-        <Lien vers="/coach" className="petit-gris" style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', minHeight: 44, padding: 12, color: 'var(--accent)', fontWeight: 700 }}>
+        <Lien vers="/app/coach" className="petit-gris pleine" style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', minHeight: 44, padding: 12, color: 'var(--accent)', fontWeight: 700 }}>
           {T.coach.espaceCoach}
         </Lien>
       </main>

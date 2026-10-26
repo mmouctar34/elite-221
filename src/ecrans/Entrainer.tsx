@@ -14,7 +14,7 @@ export function Entrainer() {
       </header>
 
       <main className="appli__contenu">
-        <Lien vers="/arene" className="carte-heros carte-heros--26 carte-heros--nuit lien-carte" style={{ display: 'block' }}>
+        <Lien vers="/app/arene" className="carte-heros carte-heros--26 carte-heros--nuit lien-carte pleine" style={{ display: 'block' }}>
           <Cercle style={{ right: -34, top: -34, width: 130, height: 130, background: 'var(--nuit-2)' }} />
           <div
             aria-hidden="true"
@@ -34,7 +34,7 @@ export function Entrainer() {
           </div>
         </Lien>
 
-        <section style={{ display: 'flex', flexDirection: 'column', gap: 10 }}>
+        <section className="pleine liste-modules">
           <h2 className="texte-15-800" style={{ margin: 0 }}>
             {T.entrainer.mesModules}
           </h2>
@@ -45,7 +45,7 @@ export function Entrainer() {
             if (i === 0) {
               const faites = apprenant.leconsTerminees + 1
               return (
-                <Lien key={m.id} vers={`/module/${m.id}`} className="carte-ligne carte-ligne--20 lien-carte">
+                <Lien key={m.id} vers={`/app/module/${m.id}`} className="carte-ligne carte-ligne--20 lien-carte">
                   <div className="icone-carree icone-carree--44 icone-carree--accent">
                     <Icone icone={IconeModule} taille={22} />
                   </div>
@@ -65,7 +65,7 @@ export function Entrainer() {
               )
             }
             return (
-              <Lien key={m.id} vers={`/module/${m.id}`} className="carte-ligne carte-ligne--20 lien-carte">
+              <Lien key={m.id} vers={`/app/module/${m.id}`} className="carte-ligne carte-ligne--20 lien-carte">
                 <div className="icone-carree icone-carree--44">
                   <Icone icone={IconeModule} taille={22} />
                 </div>
@@ -86,7 +86,7 @@ export function Entrainer() {
           })}
         </section>
 
-        <Lien vers="/seance" className="carte-ligne carte-ligne--20 lien-carte">
+        <Lien vers="/app/seance" className="carte-ligne carte-ligne--20 lien-carte pleine">
           <div className="icone-carree icone-carree--44 icone-carree--turquoise">
             <Icone icone={Mic} taille={22} />
           </div>

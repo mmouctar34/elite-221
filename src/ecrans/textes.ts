@@ -1,6 +1,7 @@
 // Tous les textes des écrans, en français, au même endroit (traduction en wolof plus tard).
 export const T = {
   nav: { libelle: 'Navigation principale', accueil: 'Accueil', entrainer: "S'entraîner", progres: 'Progrès', profil: 'Profil' },
+  laterale: { libelle: 'Menu de l’application', devise: 'L’art de bien parler', espaceCoach: 'Espace coach', retourSite: 'Retour au site', marque: 'SPLEAD, page d’accueil du site' },
   navCoach: { libelle: 'Navigation espace coach', apprenants: 'Apprenants', agenda: 'Agenda', statistiques: 'Statistiques', profil: 'Profil' },
   commun: { retour: 'Retour', jours: (n: number) => `${n} jour${n > 1 ? 's' : ''}`, abonnement: 'Abonnement', exemple: 'Données d’exemple' },
   accueil: {

@@ -25,7 +25,7 @@ export function EspaceCoach() {
       </header>
 
       <main className="appli__contenu">
-        <section className="grille-3">
+        <section className="grille-3 pleine">
           <div className="chiffre" style={{ background: 'var(--accent)', color: 'var(--blanc)' }}>
             <span className="chiffre__valeur">{statsCoach.apprenants}</span>
             <span style={{ fontSize: 12, color: 'var(--texte-sur-accent)' }}>{T.espaceCoach.apprenants}</span>
@@ -40,7 +40,7 @@ export function EspaceCoach() {
           </div>
         </section>
 
-        <div className="filtres" role="group" aria-label={T.espaceCoach.filtresLibelle}>
+        <div className="filtres pleine" role="group" aria-label={T.espaceCoach.filtresLibelle}>
           {(Object.keys(T.espaceCoach.filtres) as Filtre[]).map((cle) => (
             <button key={cle} type="button" className="filtre" aria-pressed={filtre === cle} onClick={() => setFiltre(cle)}>
               {T.espaceCoach.filtres[cle]}
@@ -48,7 +48,7 @@ export function EspaceCoach() {
           ))}
         </div>
 
-        <ul style={{ display: 'flex', flexDirection: 'column', gap: 10, margin: 0, padding: 0, listStyle: 'none' }}>
+        <ul className="pleine liste-apprenants">
           {liste.map((a) => (
             <li key={a.nom} className="carte-ligne carte-ligne--20" style={{ gap: 12, padding: '12px 14px' }}>
               <span className="avatar avatar--44" aria-hidden="true">
