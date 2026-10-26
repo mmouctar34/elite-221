@@ -8,12 +8,23 @@ Contenu validé par le fondateur le 26/10/2026.
 
 | US | Titre | Points | État | Recette |
 |---|---|---|---|---|
-| US-005 | Vérification automatique de chaque modification | 3 | En recette | [PV](../recettes/US-005.md) : acceptée sous condition (première exécution sur GitHub) |
-| US-007 | Système de design « Souffle » | 5 | En recette | [PV](../recettes/US-007.md) : acceptée avec une réserve (test automatique des 44 px) |
-| US-001 | Installer SPLEAD sur Android | 3 | En recette | [PV](../recettes/US-001.md) : acceptée sous condition (essai sur téléphone) |
-| US-003 | Ouvrir SPLEAD sans réseau | 3 | En recette | [PV](../recettes/US-003.md) : acceptée sous condition (vrai mode avion sur téléphone) |
+| US-005 | Vérification automatique de chaque modification | 3 | Acceptée sous condition | [PV](../recettes/US-005.md) |
+| US-007 | Système de design « Souffle » | 5 | Acceptée sous condition | [PV](../recettes/US-007.md) |
+| US-001 | Installer SPLEAD sur Android | 3 | Acceptée sous condition | [PV](../recettes/US-001.md) |
+| US-003 | Ouvrir SPLEAD sans réseau | 3 | Acceptée sous condition | [PV](../recettes/US-003.md) |
 
-Une user story ne passe « Terminée » qu'après la décision du fondateur dans son procès-verbal.
+Décision du fondateur, le 26/10/2026 : « J'accepte les 4 user stories du sprint 1 avec leurs conditions. »
+
+## Conditions à lever
+
+Chaque user story passera « Terminée » quand sa condition sera levée et prouvée (preuve ajoutée à son procès-verbal).
+
+| US | Condition | Dépend de | État |
+|---|---|---|---|
+| US-005 | Première exécution réelle de la vérification sur GitHub ; protection de `main` activée | Création du dépôt `mmouctar34/splead` | À faire |
+| US-007 | Le contrôle des 44 px et du débordement devient un test automatique | US-042 | À faire |
+| US-001 | Installation réussie sur un vrai téléphone Android | Préversion en ligne (US-006) et téléphone du fondateur | À faire |
+| US-003 | Ouverture en vrai mode avion sur un téléphone Android | Préversion en ligne (US-006) et téléphone du fondateur | À faire |
 
 ## Blocages
 
@@ -44,4 +55,6 @@ Un défaut a été trouvé pendant la recette (débordement avec l'affichage agr
   - l'absence de téléphone et d'adresse en ligne empêche de clôturer les user stories.
 - **Ce qu'on change au prochain sprint** : mettre en ligne une préversion très tôt (US-006), pour que chaque recette puisse se faire sur le téléphone du fondateur ; ajouter le test automatique des zones tactiles (US-042).
 
-## Vélocité : 14 points livrés en recette sur 14 prévus ; points « terminés » à compter après la décision du fondateur
+## Vélocité : 14 points acceptés (sous condition) sur 14 prévus
+
+Pour planifier le sprint 2, on retient une capacité de 14 points. Les conditions ci-dessus seront traitées en priorité.
