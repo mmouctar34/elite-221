@@ -1,18 +1,22 @@
-# Captures du design
+# Design de référence : « SPLEAD Design » (style Souffle)
 
-Déposez ici les captures d'écran de référence, avant le jalon J1, nommées ainsi :
+**C'est la référence visuelle de l'application.** Chaque écran construit doit lui être fidèle.
+
+- **Source** : la maquette validée par le fondateur dans Claude, artifact « SPLEAD Design » (16 octobre 2026) : https://claude.ai/artifact/YMjHQCXdktdMMBNhJNgerH
+- **Copie locale** : `maquettes-souffle/`, un fichier par écran (format Claude Design `.dc.html`). Ces fichiers servent de modèle : on ne les modifie pas ici ; si le design change, on le change dans la maquette, puis on recopie.
 
 | Fichier | Écran |
 |---|---|
-| `01-accueil.png` | Accueil |
-| `02-sentrainer.png` | S'entraîner |
-| `03-module.png` | Module |
-| `04-lecon-cas-pratique.png` | Leçon et cas pratique |
-| `05-arene.png` | Arène 60 secondes |
-| `06-seance.png` | Séance |
-| `07-analyse.png` | Analyse |
-| `08-progres.png` | Progrès |
-| `09-mon-coach.png` | Mon coach |
-| `10-espace-coach.png` | Espace coach |
+| `Direction.dc.html` | Direction visuelle (couleurs, police, principes) |
+| `Main.dc.html` | Accueil |
+| `Entrainer.dc.html` | S'entraîner |
+| `Module.dc.html` | Module |
+| `Lecon.dc.html` | Leçon et cas pratique |
+| `Seance.dc.html` | Séance |
+| `Analyse.dc.html` | Analyse |
+| `Progression.dc.html` | Progrès |
+| `Arene.dc.html` | Arène 60 secondes |
+| `Coach.dc.html` | Mon coach |
+| `EspaceCoach.dc.html` | Espace coach (tableau de bord) |
 
-Si un écran tient sur plusieurs captures, ajoutez une lettre : `07a-analyse.png`, `07b-analyse.png`.
+Principes repris de la direction visuelle : le micro au centre ; tout est arrondi et calme ; le turquoise ne sert qu'à l'action ; aucun emoji, uniquement des icônes à trait uniforme ; formes dessinées en code, pas de grosses images ; une seule police, Plus Jakarta Sans, de 500 à 800, texte de 15 px minimum.
