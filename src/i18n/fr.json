@@ -9,5 +9,10 @@
   "nav.progres": "Progrès",
   "nav.profil": "Profil",
   "ecran.bientot.titre": "{ecran} arrive bientôt",
-  "ecran.bientot.texte": "Cet écran sera construit dans un prochain sprint."
+  "ecran.bientot.texte": "Cet écran sera construit dans un prochain sprint.",
+  "installation.region": "Installer l'application",
+  "installation.texte": "Installe SPLEAD sur ton écran d'accueil : elle s'ouvrira en un geste, même sans réseau.",
+  "installation.bouton": "Installer SPLEAD",
+  "installation.plusTard": "Plus tard",
+  "horsLigne.texte": "Hors-ligne : tu peux continuer avec ce qui est déjà sur ton téléphone."
 }
