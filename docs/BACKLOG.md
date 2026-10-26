@@ -47,6 +47,10 @@ En tant que fondateur, je veux des couleurs, une police et des composants réuti
 - Un test vérifie que chaque bouton mesure au moins 44 × 44 px et que les contrastes respectent le niveau AA.
 - Aucun orange, aucun rouge, aucun emoji.
 
+**US-042 Test automatique des zones tactiles et du débordement.** Important, 3 points, Prête. Ajoutée le 26/10/2026, après la recette de US-007.
+En tant que fondateur, je veux qu'un test vérifie automatiquement, dans un vrai navigateur, la taille des boutons et l'absence de débordement, afin qu'aucune régression d'accessibilité ne passe inaperçue.
+- Étant donné l'intégration continue, quand elle tourne, alors un test Playwright ouvre l'accueil et `/design` à 360 px, puis à 180 px (affichage agrandi à 200 %), et échoue si un élément cliquable mesure moins de 44 × 44 px à 360 px ou si un élément dépasse de l'écran.
+
 **US-008 Navigation du bas.** Indispensable, 2 points, À préciser (captures).
 En tant qu'apprenant, je veux passer d'Accueil à S'entraîner, Progrès et Profil en un geste, afin de trouver vite ce que je cherche.
 - Les 4 onglets sont visibles, l'onglet actif est indiqué autrement que par la couleur seule, et le bouton retour d'Android ramène à l'écran précédent.
