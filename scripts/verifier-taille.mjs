@@ -1,7 +1,7 @@
 // Mesure le poids du code chargé à la première ouverture (ENF-02, US-005).
 // Lit dist/index.html, additionne les scripts et styles qu'il charge, compressés (gzip).
 // Au-delà du budget, affiche un avertissement sans bloquer (critère de US-005).
-import { readFileSync, existsSync } from 'node:fs'
+import { appendFileSync, readFileSync, existsSync } from 'node:fs'
 import { join } from 'node:path'
 import { gzipSync } from 'node:zlib'
 
@@ -27,6 +27,20 @@ for (const fichier of fichiers) {
 
 const totalKo = totalOctets / 1024
 console.log(`Total chargé à la première ouverture : ${totalKo.toFixed(1)} Ko compressés (budget : ${BUDGET_KO} Ko).`)
-if (totalKo > BUDGET_KO) {
+const depassement = totalKo > BUDGET_KO
+if (depassement) {
   console.warn(`AVERTISSEMENT : le budget de ${BUDGET_KO} Ko est dépassé de ${(totalKo - BUDGET_KO).toFixed(1)} Ko.`)
+}
+
+// Sur GitHub Actions, le résultat s'affiche aussi dans le résumé de la vérification.
+if (process.env.GITHUB_STEP_SUMMARY) {
+  const resume = [
+    '### Taille du code chargé à la première ouverture',
+    '',
+    `**${totalKo.toFixed(1)} Ko** compressés, pour un budget de ${BUDGET_KO} Ko.`,
+    depassement ? '' : 'Dans le budget.',
+    depassement ? `**Avertissement : budget dépassé de ${(totalKo - BUDGET_KO).toFixed(1)} Ko.**` : '',
+    '',
+  ].join('\n')
+  appendFileSync(process.env.GITHUB_STEP_SUMMARY, resume)
 }

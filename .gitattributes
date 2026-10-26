@@ -1,0 +1,9 @@
+# Fins de ligne identiques sur Windows et sur les serveurs de GitHub
+* text=auto eol=lf
+
+# Fichiers binaires : jamais modifies par git
+*.png binary
+*.jpg binary
+*.ico binary
+*.woff binary
+*.woff2 binary
