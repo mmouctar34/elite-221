@@ -15,7 +15,8 @@ if (!existsSync(pageHtml)) {
 }
 
 const html = readFileSync(pageHtml, 'utf8')
-const chemins = [...html.matchAll(/(?:src|href)="\/(assets\/[^"]+\.(?:js|css))"/g)].map((m) => m[1])
+// Les chemins commencent par l'adresse de base (« / » ou « /elite-221/ ») : on ne garde que « assets/… ».
+const chemins = [...html.matchAll(/(?:src|href)="[^"]*?(assets\/[^"]+\.(?:js|css))"/g)].map((m) => m[1])
 const fichiers = [...new Set(chemins)]
 
 let totalOctets = 0

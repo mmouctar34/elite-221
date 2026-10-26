@@ -6,7 +6,13 @@ import { VitePWA } from 'vite-plugin-pwa'
 const INDIGO = '#4F46E5'
 const FOND = '#F3F1FF'
 
+// Adresse de base : « / » en local, « /elite-221/ » sur GitHub Pages
+// (fournie par la publication automatique, voir .github/workflows/publication-pages.yml).
+const environnement = (globalThis as { process?: { env: Record<string, string | undefined> } }).process?.env
+const BASE = environnement?.SPLEAD_BASE ?? '/'
+
 export default defineConfig({
+  base: BASE,
   plugins: [
     react(),
     VitePWA({
@@ -21,8 +27,9 @@ export default defineConfig({
         description: "Une séance par jour pour mieux parler en public, avec un retour immédiat et un vrai coach.",
         lang: 'fr',
         dir: 'ltr',
-        start_url: '/',
-        scope: '/',
+        // Relatives au manifeste : fonctionnent à la racine comme dans /elite-221/.
+        start_url: './',
+        scope: './',
         display: 'standalone',
         orientation: 'portrait',
         background_color: FOND,
@@ -37,7 +44,7 @@ export default defineConfig({
       workbox: {
         // Tout ce qui sert à afficher l'application est gardé sur le téléphone (US-003).
         globPatterns: ['**/*.{js,css,html,svg,png,ico,woff2}'],
-        navigateFallback: '/index.html',
+        navigateFallback: `${BASE}index.html`,
         cleanupOutdatedCaches: true,
       },
     }),
