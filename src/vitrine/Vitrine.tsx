@@ -1,9 +1,10 @@
-import { useState } from 'react'
+import { useRef, useState, type CSSProperties } from 'react'
 import { BookText, ChartNoAxesColumn, Check, Download, Flame, Menu, Mic, Smartphone, Video, X } from 'lucide-react'
 import { Lien } from '../navigation'
 import { modules } from '../donnees/exemple'
 import { Icone } from '../ecrans/commun'
 import { lancerInstallation, useInstallation } from '../pwa/installation'
+import { useApparitionAuDefilement } from './apparition'
 import { V } from './textes'
 
 const iconesEtapes = [BookText, Mic, ChartNoAxesColumn, Video]
@@ -22,10 +23,16 @@ function Marque() {
   )
 }
 
+// Hauteurs des barres de l'onde sonore (en % de la hauteur), pour un dessin irrégulier et vivant.
+const ONDE = [38, 64, 92, 56, 80, 44, 100, 62, 84, 50, 34]
+
 // Aperçu de l'application, dessiné en code (pas d'image) : reprend l'accueil de la maquette.
+// Animations en CSS seulement (légères, coupées si l'on demande à réduire les animations).
 function ApercuApplication() {
   return (
     <div className="v-apercu" aria-hidden="true">
+      <span className="v-apercu__halo" />
+      <span className="v-apercu__halo v-apercu__halo--2" />
       <div className="v-apercu__ecran">
         <div className="v-apercu__entete">
           <span className="marque-ronde__pastille" style={{ width: 26, height: 26, fontSize: 13 }}>
@@ -39,13 +46,22 @@ function ApercuApplication() {
           <span className="v-apercu__cercle" />
           <span className="v-apercu__pastille">{V.apercu.seance}</span>
           <span className="v-apercu__titre">{V.apercu.titre}</span>
+          <span className="v-apercu__onde">
+            {ONDE.map((hauteur, i) => (
+              <span key={i} style={{ height: `${hauteur}%`, '--i': i } as CSSProperties} />
+            ))}
+          </span>
           <span className="v-apercu__bouton">
             <Icone icone={Mic} taille={14} trait={2.4} /> {V.apercu.bouton}
           </span>
         </div>
         <div className="v-apercu__semaine">
           {Array.from({ length: 7 }, (_, i) => (
-            <span key={i} className={i < 3 ? 'v-apercu__jour v-apercu__jour--fait' : i === 3 ? 'v-apercu__jour v-apercu__jour--aujourdhui' : 'v-apercu__jour'}>
+            <span
+              key={i}
+              style={{ '--i': i } as CSSProperties}
+              className={i < 3 ? 'v-apercu__jour v-apercu__jour--fait' : i === 3 ? 'v-apercu__jour v-apercu__jour--aujourdhui' : 'v-apercu__jour'}
+            >
               {i < 3 ? <Icone icone={Check} taille={10} trait={3.4} /> : null}
             </span>
           ))}
@@ -53,6 +69,18 @@ function ApercuApplication() {
         <div className="v-apercu__ligne" />
         <div className="v-apercu__ligne v-apercu__ligne--courte" />
       </div>
+      <span className="v-apercu__bulle v-apercu__bulle--analyse">
+        <span className="v-apercu__bulle-icone">
+          <Icone icone={ChartNoAxesColumn} taille={16} />
+        </span>
+        {V.apercu.analyse}
+      </span>
+      <span className="v-apercu__bulle v-apercu__bulle--coach">
+        <span className="v-apercu__bulle-icone">
+          <Icone icone={Video} taille={16} />
+        </span>
+        {V.apercu.coach}
+      </span>
     </div>
   )
 }
@@ -60,9 +88,11 @@ function ApercuApplication() {
 export function Vitrine() {
   const [menuOuvert, setMenuOuvert] = useState(false)
   const { peutInstaller } = useInstallation()
+  const racine = useRef<HTMLDivElement>(null)
+  useApparitionAuDefilement(racine)
 
   return (
-    <div className="vitrine" id="haut">
+    <div className="vitrine" id="haut" ref={racine}>
       <header className="v-entete">
         <div className="v-conteneur v-entete__ligne">
           <Marque />
@@ -105,7 +135,9 @@ export function Vitrine() {
                 <span className="v-badge__point" aria-hidden="true" />
                 {V.heros.badge}
               </span>
-              <h1>{V.heros.titre}</h1>
+              <h1>
+                {V.heros.titre} <span className="v-heros__accent">{V.heros.titreAccent}</span>
+              </h1>
               <p className="v-heros__intro">{V.heros.texte}</p>
               <div className="v-heros__actions">
                 <Lien vers="/inscription" className="v-bouton v-bouton--action v-bouton--grand">
