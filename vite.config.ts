@@ -16,9 +16,11 @@ export default defineConfig({
   plugins: [
     react(),
     VitePWA({
-      // « prompt » : une nouvelle version attend l'accord de l'apprenant,
-      // pour ne jamais recharger la page pendant un enregistrement (US-004).
-      registerType: 'prompt',
+      // « autoUpdate » : chaque nouvelle version publiée remplace l'ancienne automatiquement.
+      // (En mode « prompt », l'ancienne version restait affichée tant qu'aucun bandeau ne
+      // demandait l'accord : l'affichage paraissait cassé. La protection « pas de rechargement
+      // pendant un enregistrement » viendra avec l'enregistrement réel de la voix, US-004.)
+      registerType: 'autoUpdate',
       injectRegister: false,
       includeAssets: ['favicon.ico', 'apple-touch-icon-180x180.png', 'logo.svg'],
       manifest: {
@@ -46,6 +48,9 @@ export default defineConfig({
         globPatterns: ['**/*.{js,css,html,svg,png,ico,woff2}'],
         navigateFallback: `${BASE}index.html`,
         cleanupOutdatedCaches: true,
+        // La nouvelle version prend la main tout de suite, sans attendre la fermeture des onglets.
+        skipWaiting: true,
+        clientsClaim: true,
       },
     }),
   ],
