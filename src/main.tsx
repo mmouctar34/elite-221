@@ -18,7 +18,7 @@ ecouterInstallation()
 const visites = compterVisite()
 
 // Service worker : garde l'application sur le téléphone pour l'ouvrir sans réseau (US-003).
-// Une nouvelle version attend l'accord de l'apprenant (le message viendra avec US-004).
+// Une nouvelle version publiée s'installe et recharge la page automatiquement.
 registerSW({ immediate: true })
 
 // Demande au navigateur de ne pas effacer les données de SPLEAD quand l'espace manque
