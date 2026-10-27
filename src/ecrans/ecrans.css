@@ -92,6 +92,8 @@
   background: var(--blanc);
   font-size: 14px;
   font-weight: 700;
+  flex: none;
+  white-space: nowrap;
 }
 
 .salutation {
@@ -1139,8 +1141,184 @@
 }
 
 /* Sur téléphone, la colonne de l'accueil ne change rien à la mise en page. */
-.accueil__colonne {
+.accueil__colonne,
+.accueil__haut {
   display: contents;
+}
+
+/* Accueil vivant : les blocs entrent l'un après l'autre, la carte du jour « respire »,
+   le bouton micro appelle doucement, les jours de la semaine s'allument. */
+.accueil {
+  --sortie: cubic-bezier(0.22, 1, 0.36, 1);
+  --ressort: cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.accueil .salutation,
+.accueil .accueil__heros,
+.accueil .carte-s,
+.accueil .lien-carte {
+  animation: monter 0.7s var(--sortie) both;
+}
+
+.accueil .accueil__heros {
+  animation-delay: 0.08s;
+}
+
+.accueil .carte-s {
+  animation-delay: 0.16s;
+}
+
+.accueil .lien-carte {
+  animation-delay: 0.24s;
+}
+
+.accueil .lien-carte + .lien-carte {
+  animation-delay: 0.32s;
+}
+
+.accueil__cercle-grand {
+  animation: souffle 6s ease-in-out infinite;
+}
+
+.accueil__cercle-petit {
+  animation: flotter 5s ease-in-out infinite;
+}
+
+.accueil .accueil__heros .bouton-action {
+  animation: appel-micro 2.6s ease-out 1.2s infinite;
+}
+
+.accueil .semaine__rond {
+  animation: allumer 0.45s var(--ressort) calc(0.35s + var(--i, 0) * 60ms) both;
+}
+
+.accueil .semaine__rond--aujourdhui {
+  position: relative;
+}
+
+.accueil .semaine__rond--aujourdhui::after {
+  content: '';
+  position: absolute;
+  inset: -2.5px;
+  border-radius: 50%;
+  border: 2.5px solid var(--turquoise);
+  animation: pulsation 2.4s ease-out 1.2s infinite;
+}
+
+.accueil .serie__flamme {
+  animation: vaciller 2.2s ease-in-out infinite;
+  transform-origin: 50% 90%;
+}
+
+/* Les cartes cliquables répondent au toucher et, sur ordinateur, au survol. */
+.accueil .lien-carte {
+  transition:
+    transform 0.25s var(--sortie),
+    box-shadow 0.25s var(--sortie);
+}
+
+.accueil .lien-carte:active {
+  transform: scale(0.98);
+}
+
+.accueil .lien-carte > span:last-child svg {
+  transition: transform 0.25s var(--sortie);
+}
+
+.accueil .bouton-action {
+  transition: transform 0.18s var(--sortie);
+}
+
+.accueil .bouton-action:active {
+  transform: scale(0.97);
+}
+
+@media (hover: hover) {
+  .accueil .lien-carte:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 14px 28px rgba(30, 27, 75, 0.08);
+  }
+
+  .accueil .lien-carte:hover > span:last-child svg {
+    transform: translateX(4px);
+  }
+
+  .accueil .bouton-action:hover {
+    transform: translateY(-2px);
+  }
+}
+
+@keyframes monter {
+  from {
+    opacity: 0;
+    transform: translateY(16px);
+  }
+}
+
+@keyframes souffle {
+  0%,
+  100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.08);
+  }
+}
+
+@keyframes flotter {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-8px);
+  }
+}
+
+@keyframes allumer {
+  from {
+    opacity: 0;
+    transform: scale(0.4);
+  }
+}
+
+@keyframes pulsation {
+  from {
+    transform: scale(1);
+    opacity: 0.7;
+  }
+  to {
+    transform: scale(1.7);
+    opacity: 0;
+  }
+}
+
+@keyframes appel-micro {
+  from {
+    box-shadow: 0 0 0 0 rgba(45, 212, 191, 0.5);
+  }
+  70%,
+  to {
+    box-shadow: 0 0 0 12px rgba(45, 212, 191, 0);
+  }
+}
+
+@keyframes vaciller {
+  0%,
+  100% {
+    transform: scale(1) rotate(0);
+  }
+  50% {
+    transform: scale(1.12) rotate(-4deg);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .accueil *,
+  .accueil *::after {
+    animation: none !important;
+    transition: none !important;
+  }
 }
 
 .liste-modules {
@@ -1307,20 +1485,65 @@
     grid-column: 1 / -1;
   }
 
+  /* La salutation à gauche, la série à droite, sur la même ligne. */
+  .accueil__haut {
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    gap: 20px;
+    box-sizing: border-box;
+    width: 100%;
+    max-width: 1200px;
+    padding: 40px 40px 8px;
+  }
+
+  .accueil__haut > .entete-accueil {
+    order: 2;
+    padding: 0 0 4px;
+  }
+
+  .accueil__haut > .salutation {
+    padding: 0;
+  }
+
+  /* La carte du jour et la colonne de droite ont la même hauteur. */
   .accueil__heros {
+    align-self: stretch;
+    display: flex;
+    flex-direction: column;
+    box-sizing: border-box;
     padding: 36px;
   }
 
+  .accueil__heros > .carte-heros__contenu {
+    flex: 1;
+  }
+
+  .accueil__heros .bouton-action {
+    margin-top: auto !important;
+  }
+
+  .accueil__heros p {
+    margin-bottom: 16px;
+  }
+
   .accueil__colonne {
+    align-self: stretch;
     display: flex;
     flex-direction: column;
     gap: 20px;
   }
 
+  /* La semaine prend la place qui reste : des écarts réguliers entre les cartes. */
+  .accueil__colonne > .carte-s {
+    flex: 1;
+    justify-content: center;
+    padding: 18px 20px;
+  }
+
   /* Le logo est déjà dans le menu latéral : on garde seulement la série dans l'en-tête. */
   .entete-accueil {
     justify-content: flex-end;
-    padding-top: 28px;
   }
 
   .entete-accueil .marque-ronde {

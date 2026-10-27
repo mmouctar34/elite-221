@@ -12,8 +12,8 @@ export function Icone({ icone: I, taille = 20, trait = TRAIT, plein = false }: {
 }
 
 // Cercle décoratif des grandes cartes colorées (formes dessinées en code, pas d'image).
-export function Cercle({ style }: { style: CSSProperties }) {
-  return <div className="cercle" aria-hidden="true" style={style} />
+export function Cercle({ style, className }: { style: CSSProperties; className?: string }) {
+  return <div className={className ? `cercle ${className}` : 'cercle'} aria-hidden="true" style={style} />
 }
 
 // Chemin à l'intérieur de l'application : « /app/progres » devient « /progres ».
@@ -122,11 +122,22 @@ export function Barre({ valeur, className = '', couleur }: { valeur: number; cla
 
 // Cadre de l'application : menu latéral sur ordinateur, colonne téléphone sur mobile.
 // « immersif » : la séance s'affiche seule, sans menu, pour rester concentré.
-export function Appli({ children, variante, immersif = false }: { children: ReactNode; variante?: 'nuit' | 'blanc'; immersif?: boolean }) {
+// « ecran » : classe propre à un écran (ex. « accueil »), pour ses animations et sa mise en page.
+export function Appli({
+  children,
+  variante,
+  immersif = false,
+  ecran,
+}: {
+  children: ReactNode
+  variante?: 'nuit' | 'blanc'
+  immersif?: boolean
+  ecran?: string
+}) {
   return (
     <div className={`coque${immersif ? ' coque--immersive' : ''}${variante ? ` coque--${variante}` : ''}`}>
       {immersif ? null : <BarreLaterale />}
-      <div className={`appli${variante ? ` appli--${variante}` : ''}`}>{children}</div>
+      <div className={`appli${variante ? ` appli--${variante}` : ''}${ecran ? ` ${ecran}` : ''}`}>{children}</div>
     </div>
   )
 }

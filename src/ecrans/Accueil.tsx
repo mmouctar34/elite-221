@@ -1,4 +1,4 @@
-import type { ReactNode } from 'react'
+import type { CSSProperties, ReactNode } from 'react'
 import { BookText, Check, ChevronRight, Flame, Mic, Video } from 'lucide-react'
 import { Lien } from '../navigation'
 import { apprenant, coach, modules } from '../donnees/exemple'
@@ -13,7 +13,9 @@ export function Accueil({ bandeaux }: { bandeaux?: ReactNode }) {
   const leconEnCours = modules.find((m) => m.id === idModule)?.lecons.find((l) => l.numero === numLecon)
 
   return (
-    <Appli>
+    <Appli ecran="accueil">
+      {/* Sur téléphone, ce bloc ne change rien ; sur ordinateur, il met la série sur la ligne du « Bonjour ». */}
+      <div className="accueil__haut">
       <header className="entete-accueil">
         <div className="marque-ronde">
           <div className="marque-ronde__pastille" aria-hidden="true">
@@ -22,7 +24,7 @@ export function Accueil({ bandeaux }: { bandeaux?: ReactNode }) {
           <span className="marque-ronde__nom">SPLEAD</span>
         </div>
         <div className="serie" aria-label={`Série : ${T.commun.jours(apprenant.serieJours)}`}>
-          <span style={{ color: 'var(--turquoise)', display: 'flex' }}>
+          <span className="serie__flamme" style={{ color: 'var(--turquoise)', display: 'flex' }}>
             <Icone icone={Flame} taille={16} plein trait={0} />
           </span>
           {T.commun.jours(apprenant.serieJours)}
@@ -33,13 +35,14 @@ export function Accueil({ bandeaux }: { bandeaux?: ReactNode }) {
         <span className="salutation__bonjour">{T.accueil.bonjour}</span>
         <span className="salutation__prenom">{session?.prenom || apprenant.prenom}</span>
       </div>
+      </div>
 
       {bandeaux ? <div className="bandeaux">{bandeaux}</div> : null}
 
       <main className="appli__contenu" style={{ paddingTop: 8 }}>
         <section className="carte-heros accueil__heros">
-          <Cercle style={{ right: -50, top: -50, width: 170, height: 170, background: 'var(--accent-clair)' }} />
-          <Cercle style={{ right: 30, top: 60, width: 60, height: 60, background: 'var(--turquoise)' }} />
+          <Cercle className="accueil__cercle-grand" style={{ right: -50, top: -50, width: 170, height: 170, background: 'var(--accent-clair)' }} />
+          <Cercle className="accueil__cercle-petit" style={{ right: 30, top: 60, width: 60, height: 60, background: 'var(--turquoise)' }} />
           <div className="carte-heros__contenu">
             <span className="pastille-action">{T.accueil.seanceDuJour}</span>
             <h2 style={{ margin: '22px 0 0', fontSize: 26, lineHeight: 1.12, fontWeight: 800, width: '80%', color: 'inherit' }}>
@@ -62,6 +65,7 @@ export function Accueil({ bandeaux }: { bandeaux?: ReactNode }) {
             {apprenant.semaine.map((etat, i) => (
               <li
                 key={i}
+                style={{ '--i': i } as CSSProperties}
                 className={`semaine__jour${etat === 'aujourdhui' ? ' semaine__jour--aujourdhui' : ''}`}
                 aria-label={`${T.accueil.joursLongs[i]} : ${T.accueil.etatJour[etat]}`}
               >
