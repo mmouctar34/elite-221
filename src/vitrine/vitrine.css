@@ -1,10 +1,23 @@
 /* Page d'accueil publique : style « Souffle », d'abord pour téléphone, puis tablette et ordinateur. */
 
 .vitrine {
+  /* Courbes de mouvement : « sortie » douce pour arriver, « ressort » léger pour les petits éléments. */
+  --v-sortie: cubic-bezier(0.22, 1, 0.36, 1);
+  --v-ressort: cubic-bezier(0.34, 1.56, 0.64, 1);
   background: var(--fond);
   color: var(--nuit);
   font-family: var(--police);
+  /* Les halos et bulles de l'aperçu ne doivent jamais créer de défilement horizontal. */
+  overflow-x: clip;
+}
+
+/* Défilement doux vers les ancres du menu, et titres non cachés par la barre du haut. */
+html:has(.vitrine) {
   scroll-behavior: smooth;
+}
+
+.vitrine [id] {
+  scroll-margin-top: 80px;
 }
 
 .v-conteneur {
@@ -130,6 +143,31 @@
   text-decoration: none;
   cursor: pointer;
   white-space: nowrap;
+  transition:
+    transform 0.18s var(--v-sortie),
+    box-shadow 0.25s var(--v-sortie);
+}
+
+.v-bouton:active {
+  transform: scale(0.97);
+}
+
+@media (hover: hover) {
+  .v-bouton:hover {
+    transform: translateY(-2px);
+  }
+
+  .v-bouton--action:hover {
+    box-shadow: 0 0 0 5px rgba(45, 212, 191, 0.28);
+  }
+
+  .v-bouton--clair:hover {
+    box-shadow: var(--ombre-douce);
+  }
+
+  .v-bouton--marque:hover {
+    box-shadow: 0 0 0 5px rgba(79, 70, 229, 0.22);
+  }
 }
 
 .v-bouton--grand {
@@ -188,10 +226,51 @@
 }
 
 .v-badge__point {
+  position: relative;
   width: 10px;
   height: 10px;
   border-radius: 50%;
   background: var(--turquoise);
+}
+
+/* Point « en direct » : un anneau qui s'élargit et s'efface. */
+.v-badge__point::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  background: var(--turquoise);
+  animation: v-pulsation 2.2s ease-out 1s infinite;
+}
+
+/* Entrée du héros : chaque ligne monte à son tour. */
+.v-heros__texte > * {
+  animation: v-monter 0.8s var(--v-sortie) both;
+}
+
+.v-heros__texte > :nth-child(2) {
+  animation-delay: 0.08s;
+}
+
+.v-heros__texte > :nth-child(3) {
+  animation-delay: 0.18s;
+}
+
+.v-heros__texte > :nth-child(4) {
+  animation-delay: 0.28s;
+}
+
+.v-heros__texte > :nth-child(5) {
+  animation-delay: 0.38s;
+}
+
+/* Fin du titre en indigo, soulignée en turquoise qui se trace de gauche à droite. */
+.v-heros__accent {
+  color: var(--accent);
+  background: linear-gradient(var(--turquoise), var(--turquoise)) no-repeat 0 94% / 100% 0.14em;
+  -webkit-box-decoration-break: clone;
+  box-decoration-break: clone;
+  animation: v-souligner 0.9s var(--v-sortie) 0.75s both;
 }
 
 .v-heros h1 {
@@ -244,11 +323,95 @@
 
 /* Aperçu de l'application, dessiné en code */
 .v-apercu {
+  position: relative;
+  isolation: isolate;
   display: flex;
   justify-content: center;
+  padding: 16px 0;
+}
+
+/* Halos qui « respirent » derrière le téléphone (rappel du nom du design, Souffle). */
+.v-apercu__halo {
+  position: absolute;
+  z-index: -1;
+  top: 50%;
+  left: 50%;
+  width: 380px;
+  height: 380px;
+  margin: -190px 0 0 -190px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(79, 70, 229, 0.24) 0%, rgba(79, 70, 229, 0) 68%);
+  animation: v-souffle 5s ease-in-out infinite;
+}
+
+.v-apercu__halo--2 {
+  top: 34%;
+  left: 66%;
+  width: 240px;
+  height: 240px;
+  margin: -120px 0 0 -120px;
+  background: radial-gradient(circle, rgba(45, 212, 191, 0.3) 0%, rgba(45, 212, 191, 0) 68%);
+  animation-duration: 6.5s;
+  animation-delay: -3s;
+}
+
+/* Petites bulles autour du téléphone : ce que l'on reçoit après la séance. */
+.v-apercu__bulle {
+  position: absolute;
+  z-index: 1;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 7px 14px 7px 7px;
+  border-radius: 22px;
+  background: var(--blanc);
+  box-shadow: 0 14px 30px rgba(30, 27, 75, 0.14);
+  font-size: 13px;
+  font-weight: 800;
+  color: var(--nuit);
+  white-space: nowrap;
+}
+
+.v-apercu__bulle-icone {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--brume);
+  color: var(--accent);
+}
+
+/* Placées sur le bas du téléphone, pour ne jamais cacher le titre de la séance. */
+.v-apercu__bulle--analyse {
+  bottom: 34%;
+  left: 50%;
+  margin-left: calc(-1 * min(190px, 50vw - 12px));
+  animation:
+    v-glisser 0.7s var(--v-sortie) 1.1s both,
+    v-flotter 6s ease-in-out 1.8s infinite;
+}
+
+.v-apercu__bulle--coach {
+  bottom: 9%;
+  right: 50%;
+  margin-right: calc(-1 * min(185px, 50vw - 12px));
+  animation:
+    v-glisser-droite 0.7s var(--v-sortie) 1.35s both,
+    v-flotter 6.5s ease-in-out 2.1s infinite;
+}
+
+.v-apercu__bulle--coach .v-apercu__bulle-icone {
+  background: var(--turquoise);
+  color: var(--nuit);
 }
 
 .v-apercu__ecran {
+  position: relative;
+  animation:
+    v-entrer 0.9s var(--v-sortie) 0.15s both,
+    v-flotter 7s ease-in-out 1.1s infinite;
   width: 280px;
   box-sizing: border-box;
   padding: 18px 16px 24px;
@@ -336,6 +499,23 @@
   color: var(--nuit);
   font-size: 13px;
   font-weight: 800;
+  animation: v-appel-micro 2.4s ease-out 1.6s infinite;
+}
+
+/* Onde sonore : la voix qui passe dans le micro. */
+.v-apercu__onde {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  height: 34px;
+}
+
+.v-apercu__onde span {
+  flex: 1;
+  border-radius: 4px;
+  background: var(--turquoise-clair);
+  animation: v-onde 0.9s ease-in-out calc(var(--i) * -0.17s) infinite alternate;
 }
 
 .v-apercu__semaine {
@@ -357,6 +537,7 @@
   justify-content: center;
   justify-self: center;
   box-sizing: border-box;
+  animation: v-apparaitre 0.45s var(--v-ressort) calc(1s + var(--i, 0) * 70ms) both;
 }
 
 .v-apercu__jour--fait {
@@ -365,8 +546,18 @@
 }
 
 .v-apercu__jour--aujourdhui {
+  position: relative;
   background: transparent;
   border: 2px solid var(--turquoise);
+}
+
+.v-apercu__jour--aujourdhui::after {
+  content: '';
+  position: absolute;
+  inset: -2px;
+  border-radius: 50%;
+  border: 2px solid var(--turquoise);
+  animation: v-pulsation 2.2s ease-out 1.8s infinite;
 }
 
 .v-apercu__ligne {
@@ -419,6 +610,21 @@
   padding: 22px;
   border-radius: 24px;
   background: var(--blanc);
+  transition:
+    transform 0.3s var(--v-sortie),
+    box-shadow 0.3s var(--v-sortie);
+}
+
+/* Sur ordinateur, les cartes se soulèvent un peu au survol. */
+@media (hover: hover) {
+  .v-grille > .v-carte:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 18px 36px rgba(30, 27, 75, 0.1);
+  }
+
+  .v-grille > .v-carte:hover .v-carte__icone {
+    transform: scale(1.08) rotate(-4deg);
+  }
 }
 
 .v-section--blanche .v-carte {
@@ -447,6 +653,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
+  transition: transform 0.3s var(--v-ressort);
 }
 
 .v-carte__numero {
@@ -670,6 +877,11 @@
   color: var(--texte-secondaire);
 }
 
+/* La réponse glisse doucement à l'ouverture. */
+.v-question[open] p {
+  animation: v-monter 0.35s var(--v-sortie) both;
+}
+
 /* Appel final */
 .v-appel {
   position: relative;
@@ -714,6 +926,128 @@
   display: flex;
   flex-wrap: wrap;
   gap: 8px 20px;
+}
+
+/* Apparition au défilement (classes posées par src/vitrine/apparition.ts) */
+.v-apparait {
+  opacity: 0;
+  transform: translateY(28px);
+  transition:
+    opacity 0.7s var(--v-sortie),
+    transform 0.7s var(--v-sortie);
+  transition-delay: calc(var(--rang, 0) * 90ms);
+}
+
+.v-apparait.est-visible {
+  opacity: 1;
+  transform: none;
+}
+
+@keyframes v-monter {
+  from {
+    opacity: 0;
+    transform: translateY(18px);
+  }
+}
+
+@keyframes v-entrer {
+  from {
+    opacity: 0;
+    transform: translateY(36px) scale(0.96);
+  }
+}
+
+@keyframes v-glisser {
+  from {
+    opacity: 0;
+    transform: translateX(-24px) scale(0.9);
+  }
+}
+
+@keyframes v-glisser-droite {
+  from {
+    opacity: 0;
+    transform: translateX(24px) scale(0.9);
+  }
+}
+
+@keyframes v-apparaitre {
+  from {
+    opacity: 0;
+    transform: scale(0.4);
+  }
+}
+
+@keyframes v-flotter {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+@keyframes v-souffle {
+  0%,
+  100% {
+    transform: scale(0.9);
+    opacity: 0.65;
+  }
+  50% {
+    transform: scale(1.06);
+    opacity: 1;
+  }
+}
+
+@keyframes v-onde {
+  from {
+    transform: scaleY(0.5);
+  }
+  to {
+    transform: scaleY(1);
+  }
+}
+
+@keyframes v-pulsation {
+  from {
+    transform: scale(1);
+    opacity: 0.7;
+  }
+  to {
+    transform: scale(2.2);
+    opacity: 0;
+  }
+}
+
+@keyframes v-appel-micro {
+  from {
+    box-shadow: 0 0 0 0 rgba(45, 212, 191, 0.55);
+  }
+  70%,
+  to {
+    box-shadow: 0 0 0 10px rgba(45, 212, 191, 0);
+  }
+}
+
+@keyframes v-souligner {
+  from {
+    background-size: 0% 0.14em;
+  }
+}
+
+/* Animations coupées pour qui les a désactivées dans son téléphone ou son ordinateur. */
+@media (prefers-reduced-motion: reduce) {
+  html:has(.vitrine) {
+    scroll-behavior: auto;
+  }
+
+  .vitrine *,
+  .vitrine *::before,
+  .vitrine *::after {
+    animation: none !important;
+    transition: none !important;
+  }
 }
 
 /* Tablette */
@@ -793,6 +1127,26 @@
 
   .v-apercu__ecran {
     width: 320px;
+  }
+
+  .v-apercu__halo {
+    width: 520px;
+    height: 520px;
+    margin: -260px 0 0 -260px;
+  }
+
+  .v-apercu__halo--2 {
+    width: 300px;
+    height: 300px;
+    margin: -150px 0 0 -150px;
+  }
+
+  .v-apercu__bulle--analyse {
+    margin-left: -240px;
+  }
+
+  .v-apercu__bulle--coach {
+    margin-right: -230px;
   }
 
   .v-section {

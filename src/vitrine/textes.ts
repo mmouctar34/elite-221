@@ -16,7 +16,8 @@ export const V = {
   installer: 'Installer l’application',
   heros: {
     badge: 'Dakar, Sénégal · Une séance par jour',
-    titre: 'L’art de bien parler, une séance par jour.',
+    titre: 'L’art de bien parler,',
+    titreAccent: 'une séance par jour.',
     texte:
       'SPLEAD t’entraîne à parler en public. Tu parles 60 secondes dans ton micro, tu reçois tout de suite une analyse claire, et un vrai coach suit tes progrès.',
     decouvrir: 'Découvrir le programme',
@@ -27,7 +28,13 @@ export const V = {
       { valeur: '1', libelle: 'vrai coach' },
     ],
   },
-  apercu: { seance: 'Séance du jour', titre: 'Convaincre en 60 secondes', bouton: 'Commencer' },
+  apercu: {
+    seance: 'Séance du jour',
+    titre: 'Convaincre en 60 secondes',
+    bouton: 'Commencer',
+    analyse: 'Analyse prête',
+    coach: 'Ton coach te suit',
+  },
   fonctionnement: {
     titre: 'Comment ça marche',
     sousTitre: 'Quatre étapes, chaque jour, en quelques minutes.',

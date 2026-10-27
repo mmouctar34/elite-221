@@ -129,6 +129,30 @@ describe('page d’accueil publique (vitrine)', () => {
     const commencer = screen.getAllByRole('link', { name: /Commencer gratuitement/ })
     expect(commencer.length).toBeGreaterThan(0)
     for (const lien of commencer) expect(lien).toHaveAttribute('href', '/inscription')
+    // Sans observation du défilement (vieux navigateur), aucun bloc n'est caché.
+    expect(document.querySelector('.v-apparait')).toBeNull()
+  })
+
+  it('les blocs apparaissent en douceur quand on fait défiler la page', () => {
+    let rappel: IntersectionObserverCallback = () => undefined
+    vi.stubGlobal(
+      'IntersectionObserver',
+      class {
+        constructor(fonction: IntersectionObserverCallback) {
+          rappel = fonction
+        }
+        observe() {}
+        unobserve() {}
+        disconnect() {}
+      },
+    )
+    ouvrir('/')
+    const titre = screen.getByRole('heading', { level: 2, name: 'Le programme' })
+    expect(titre).toHaveClass('v-apparait')
+    expect(titre).not.toHaveClass('est-visible')
+    act(() => rappel([{ isIntersecting: true, target: titre } as unknown as IntersectionObserverEntry], {} as IntersectionObserver))
+    expect(titre).toHaveClass('est-visible')
+    vi.unstubAllGlobals()
   })
 
   it('a les sections programme, tarifs, à propos et questions', () => {
