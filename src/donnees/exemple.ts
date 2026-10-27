@@ -23,7 +23,7 @@ export type Module = {
 }
 
 export const apprenant = {
-  prenom: 'Aminata',
+  prenom: 'Aïdara',
   serieJours: 3,
   // Lundi à dimanche : séance faite, aujourd'hui, ou à venir.
   semaine: ['faite', 'faite', 'faite', 'aujourdhui', 'a-venir', 'a-venir', 'a-venir'] as const,
@@ -212,7 +212,7 @@ export const apprenantsDuCoach: ReadonlyArray<{
   derniereSeance: string
   serie: number
 }> = [
-  { nom: 'Aminata B.', statut: 'Actif', progression: 70, derniereSeance: 'il y a 1 j', serie: 3 },
+  { nom: 'Aïdara', statut: 'Actif', progression: 70, derniereSeance: 'il y a 1 j', serie: 3 },
   { nom: 'Ousmane T.', statut: 'À relancer', progression: 35, derniereSeance: 'il y a 9 j', serie: 0 },
   { nom: 'Khady M.', statut: 'Actif', progression: 55, derniereSeance: 'aujourd’hui', serie: 5 },
   { nom: 'Pape S.', statut: 'Actif', progression: 85, derniereSeance: 'il y a 2 j', serie: 2 },

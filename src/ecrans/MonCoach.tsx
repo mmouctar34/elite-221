@@ -1,5 +1,6 @@
-import { ArrowRight, CalendarDays, Check, ChevronRight, MessageSquare, Video } from 'lucide-react'
-import { Lien } from '../navigation'
+import { ArrowRight, CalendarDays, Check, ChevronRight, LogOut, MessageSquare, Video } from 'lucide-react'
+import { Lien, naviguer } from '../navigation'
+import { seDeconnecter } from '../session'
 import { coach } from '../donnees/exemple'
 import { Appli, BarreBas, Cercle, Icone } from './commun'
 import { T } from './textes'
@@ -93,6 +94,19 @@ export function MonCoach() {
         <Lien vers="/app/coach" className="petit-gris pleine" style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', minHeight: 44, padding: 12, color: 'var(--accent)', fontWeight: 700 }}>
           {T.coach.espaceCoach}
         </Lien>
+
+        <button
+          type="button"
+          className="bouton-action bouton-action--blanc pleine"
+          style={{ height: 52, borderRadius: 26, fontSize: 16 }}
+          onClick={() => {
+            seDeconnecter()
+            naviguer('/')
+          }}
+        >
+          <Icone icone={LogOut} />
+          {T.connexion.deconnexion}
+        </button>
       </main>
 
       <BarreBas />

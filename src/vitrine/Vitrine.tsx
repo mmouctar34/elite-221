@@ -72,15 +72,15 @@ export function Vitrine() {
                 {n.libelle}
               </a>
             ))}
-            <Lien vers="/app" className="v-bouton v-bouton--clair v-nav__mobile">
+            <Lien vers="/connexion" className="v-bouton v-bouton--clair v-nav__mobile">
               {V.seConnecter}
             </Lien>
           </nav>
           <div className="v-entete__actions">
-            <Lien vers="/app" className="v-bouton v-bouton--clair v-ordinateur">
+            <Lien vers="/connexion" className="v-bouton v-bouton--clair v-ordinateur">
               {V.seConnecter}
             </Lien>
-            <Lien vers="/app" className="v-bouton v-bouton--action">
+            <Lien vers="/inscription" className="v-bouton v-bouton--action">
               {V.commencer}
             </Lien>
             <button
@@ -108,7 +108,7 @@ export function Vitrine() {
               <h1>{V.heros.titre}</h1>
               <p className="v-heros__intro">{V.heros.texte}</p>
               <div className="v-heros__actions">
-                <Lien vers="/app" className="v-bouton v-bouton--action v-bouton--grand">
+                <Lien vers="/inscription" className="v-bouton v-bouton--action v-bouton--grand">
                   <Icone icone={Mic} trait={2.4} />
                   {V.commencer}
                 </Lien>
@@ -244,7 +244,7 @@ export function Vitrine() {
                       </li>
                     ))}
                   </ul>
-                  <Lien vers="/app" className={`v-bouton v-bouton--grand ${o.miseEnAvant ? 'v-bouton--action' : 'v-bouton--clair'}`}>
+                  <Lien vers="/inscription" className={`v-bouton v-bouton--grand ${o.miseEnAvant ? 'v-bouton--action' : 'v-bouton--clair'}`}>
                     {o.bouton}
                   </Lien>
                 </article>
@@ -315,7 +315,7 @@ export function Vitrine() {
               <span className="cercle" style={{ right: -50, top: -50, width: 200, height: 200, background: 'var(--accent-clair)' }} aria-hidden="true" />
               <span className="cercle" style={{ right: 60, bottom: -30, width: 80, height: 80, background: 'var(--turquoise)' }} aria-hidden="true" />
               <h2>{V.appel.titre}</h2>
-              <Lien vers="/app" className="v-bouton v-bouton--action v-bouton--grand">
+              <Lien vers="/inscription" className="v-bouton v-bouton--action v-bouton--grand">
                 <Icone icone={Mic} trait={2.4} />
                 {V.appel.bouton}
               </Lien>

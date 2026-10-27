@@ -2,6 +2,8 @@ import { useChemin } from './navigation'
 import { PageDesign } from './pages/PageDesign'
 import { BandeauHorsLigne, BandeauInstallation } from './pwa/Bandeaux'
 import { Vitrine } from './vitrine/Vitrine'
+import { useSession } from './session'
+import { Connexion } from './ecrans/Connexion'
 import { cheminApp } from './ecrans/commun'
 import { Accueil } from './ecrans/Accueil'
 import { Entrainer } from './ecrans/Entrainer'
@@ -17,9 +19,15 @@ import { EspaceCoach } from './ecrans/EspaceCoach'
 // « / » : la page d'accueil publique (vitrine). « /app/… » : l'application.
 export function App({ visites }: { visites: number }) {
   const chemin = useChemin().replace(/\/+$/, '') || '/'
+  const session = useSession()
 
   if (chemin === '/design') return <PageDesign />
+  if (chemin === '/connexion') return <Connexion mode="connexion" />
+  if (chemin === '/inscription') return <Connexion mode="inscription" />
   if (chemin !== '/app' && !chemin.startsWith('/app/')) return <Vitrine />
+
+  // Application réservée aux personnes connectées (démonstration : sans vérification).
+  if (!session) return <Connexion mode="connexion" suite={chemin} />
 
   const ecran = cheminApp(chemin)
 
