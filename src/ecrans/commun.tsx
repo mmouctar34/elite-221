@@ -1,6 +1,7 @@
 import type { CSSProperties, ReactNode } from 'react'
-import { ArrowLeft, CalendarDays, ChartNoAxesColumn, ChevronLeft, House, Mic, User, Users, type LucideIcon } from 'lucide-react'
-import { Lien, useChemin } from '../navigation'
+import { ArrowLeft, CalendarDays, ChartNoAxesColumn, ChevronLeft, House, LogOut, Mic, User, Users, type LucideIcon } from 'lucide-react'
+import { Lien, naviguer, useChemin } from '../navigation'
+import { seDeconnecter } from '../session'
 import { T } from './textes'
 
 // Épaisseur de trait des icônes de la maquette.
@@ -86,10 +87,16 @@ export function BarreLaterale() {
           {T.laterale.espaceCoach}
         </Lien>
       </nav>
-      <Lien vers="/" className="barre-laterale__lien barre-laterale__retour">
-        <Icone icone={ArrowLeft} />
-        {T.laterale.retourSite}
-      </Lien>
+      <div className="barre-laterale__retour">
+        <button type="button" className="barre-laterale__lien barre-laterale__deconnexion" onClick={() => { seDeconnecter(); naviguer('/') }}>
+          <Icone icone={LogOut} />
+          {T.connexion.deconnexion}
+        </button>
+        <Lien vers="/" className="barre-laterale__lien">
+          <Icone icone={ArrowLeft} />
+          {T.laterale.retourSite}
+        </Lien>
+      </div>
     </aside>
   )
 }

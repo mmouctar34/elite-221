@@ -4,20 +4,69 @@ import { App } from './App'
 import { formaterDuree } from './ecrans/Seance'
 import { filtrerApprenants } from './ecrans/EspaceCoach'
 import { pointsCourbe } from './ecrans/Progres'
+import { seConnecter, seDeconnecter } from './session'
 
-function ouvrir(chemin: string) {
+// Par défaut, les tests de l'application ouvrent une session de démonstration (prénom Aïdara).
+function ouvrir(chemin: string, { connecte = true }: { connecte?: boolean } = {}) {
+  if (connecte) seConnecter({ prenom: 'Aïdara', email: 'aidara@exemple.sn' })
+  else seDeconnecter()
   window.history.pushState(null, '', chemin)
   return render(<App visites={1} />)
 }
 
 afterEach(() => {
   window.history.pushState(null, '', '/')
+  seDeconnecter()
   vi.useRealTimers()
+})
+
+describe('connexion de démonstration', () => {
+  it('l’application demande de se connecter', () => {
+    ouvrir('/app/progres', { connecte: false })
+    expect(screen.getByRole('heading', { level: 1, name: 'Content de te revoir' })).toBeInTheDocument()
+    expect(screen.getByRole('note')).toHaveTextContent('N’utilise pas un vrai mot de passe')
+  })
+
+  it('refuse un formulaire incomplet et explique pourquoi', async () => {
+    ouvrir('/connexion', { connecte: false })
+    await userEvent.click(screen.getByRole('button', { name: 'Se connecter' }))
+    expect(screen.getByLabelText('Adresse e-mail')).toHaveAttribute('aria-invalid', 'true')
+    expect(screen.getByLabelText('Mot de passe')).toHaveAttribute('aria-invalid', 'true')
+  })
+
+  it('se connecte sans base de données et ouvre la page demandée', async () => {
+    ouvrir('/app/progres', { connecte: false })
+    await userEvent.type(screen.getByLabelText('Adresse e-mail'), 'aidara.diop@exemple.sn')
+    await userEvent.type(screen.getByLabelText('Mot de passe'), 'demo')
+    await userEvent.click(screen.getByRole('button', { name: 'Se connecter' }))
+    expect(window.location.pathname).toBe('/app/progres')
+    expect(screen.getByRole('heading', { level: 1, name: 'Tes progrès' })).toBeInTheDocument()
+    expect(window.localStorage.getItem('splead.session')).not.toContain('demo')
+  })
+
+  it('l’inscription utilise le prénom saisi', async () => {
+    ouvrir('/inscription', { connecte: false })
+    await userEvent.type(screen.getByLabelText('Ton prénom'), 'Aïdara')
+    await userEvent.type(screen.getByLabelText('Adresse e-mail'), 'a@exemple.sn')
+    await userEvent.type(screen.getByLabelText('Mot de passe'), 'demo')
+    await userEvent.click(screen.getByRole('button', { name: 'Créer mon compte' }))
+    expect(window.location.pathname).toBe('/app')
+    expect(screen.getByText('Aïdara')).toBeInTheDocument()
+  })
+
+  it('la déconnexion ramène au site', async () => {
+    ouvrir('/app/profil')
+    const [bouton] = screen.getAllByRole('button', { name: 'Se déconnecter' })
+    if (!bouton) throw new Error('Bouton « Se déconnecter » introuvable')
+    await userEvent.click(bouton)
+    expect(window.location.pathname).toBe('/')
+    expect(window.localStorage.getItem('splead.session')).toBeNull()
+  })
 })
 
 describe('écrans fidèles à la maquette', () => {
   it.each([
-    ['/app', 'Aminata'],
+    ['/app', 'Aïdara'],
     ['/app/entrainer', "S'entraîner"],
     ['/app/module/1', 'Prise de Parole en Public'],
     ['/app/lecon/1/2', 'Gestion du Stress et du Trac'],
@@ -79,7 +128,7 @@ describe('page d’accueil publique (vitrine)', () => {
     expect(screen.getByRole('heading', { level: 1, name: 'L’art de bien parler, une séance par jour.' })).toBeInTheDocument()
     const commencer = screen.getAllByRole('link', { name: /Commencer gratuitement/ })
     expect(commencer.length).toBeGreaterThan(0)
-    for (const lien of commencer) expect(lien).toHaveAttribute('href', '/app')
+    for (const lien of commencer) expect(lien).toHaveAttribute('href', '/inscription')
   })
 
   it('a les sections programme, tarifs, à propos et questions', () => {

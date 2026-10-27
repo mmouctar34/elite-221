@@ -4,8 +4,10 @@ import { Lien } from '../navigation'
 import { apprenant, coach, modules } from '../donnees/exemple'
 import { Appli, BarreBas, Cercle, Icone } from './commun'
 import { T } from './textes'
+import { useSession } from '../session'
 
 export function Accueil({ bandeaux }: { bandeaux?: ReactNode }) {
+  const session = useSession()
   const totalLecons = modules.reduce((n, m) => n + m.lecons.length, 0)
   const { module: idModule, lecon: numLecon } = apprenant.leconEnCours
   const leconEnCours = modules.find((m) => m.id === idModule)?.lecons.find((l) => l.numero === numLecon)
@@ -29,7 +31,7 @@ export function Accueil({ bandeaux }: { bandeaux?: ReactNode }) {
 
       <div className="salutation">
         <span className="salutation__bonjour">{T.accueil.bonjour}</span>
-        <span className="salutation__prenom">{apprenant.prenom}</span>
+        <span className="salutation__prenom">{session?.prenom || apprenant.prenom}</span>
       </div>
 
       {bandeaux ? <div className="bandeaux">{bandeaux}</div> : null}
