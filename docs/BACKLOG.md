@@ -58,6 +58,8 @@ En tant qu'apprenant, je veux passer d'Accueil à S'entraîner, Progrès et Prof
 
 ## E-03 Comptes, connexion et consentement
 
+**Étape temporaire (27/10/2026)** : une page de connexion de **démonstration** existe déjà (`src/ecrans/Connexion.tsx`, `src/session.ts`). Elle accepte tout, sans base de données, pour pouvoir parcourir l'application. Les user stories US-009 à US-015 la remplaceront par une vraie connexion sécurisée (Supabase), sans changer son apparence.
+
 **US-009 S'inscrire avec Google.** Indispensable, 3 points, Prête.
 En tant que visiteur, je veux créer mon compte avec mon compte Google, afin de m'inscrire en un geste.
 - Étant donné un compte Google, quand j'appuie sur « Continuer avec Google », alors mon compte SPLEAD est créé et je passe à l'étape du prénom.
